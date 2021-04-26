@@ -182,9 +182,9 @@ function ExclusaoOrdemServico(id, nome, data) {
     return false;
 }
 
-function ValidarCPFCadastroCliente(cpf, B) {
+function ValidarCPFCadastroCliente(cpf, cpfbuscado) {
 
-    if (B == null || cpf != B) {
+    if (B == null || cpf != cpfbuscado) {
         if (cpf.trim() != '') {
             $.post('Ajax/Verificar_Duplicidade_CPF_Cliente.php',
                 { cpf_cliente: cpf },
@@ -198,14 +198,14 @@ function ValidarCPFCadastroCliente(cpf, B) {
                     }
                 });
         }
-    } else if (cpf == B) {
+    } else if (cpf == cpfbuscado) {
         $("#val_cpf").hide();
     }
 }
 
-function ValidarCPFCadastroFuncionario(cpf, B) {
+function ValidarCPFCadastroFuncionario(cpf, cpfbuscado) {
 
-    if (B == null || cpf != B) {
+    if (B == null || cpf != cpfbuscado) {
         if (cpf.trim() != '') {
             $.post('Ajax/Verificar_Duplicidade_CPF_Funcionario.php',
                 { cpf_funcionario: cpf },
@@ -219,7 +219,7 @@ function ValidarCPFCadastroFuncionario(cpf, B) {
                     }
                 });
         }
-    } else if (cpf == B) {
+    } else if (cpf == cpfbuscado) {
         $("#val_cpf").hide();
     }
 }
