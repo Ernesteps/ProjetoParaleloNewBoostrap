@@ -184,7 +184,7 @@ function ExclusaoOrdemServico(id, nome, data) {
 
 function ValidarCPFCadastroCliente(cpf, cpfbuscado) {
 
-    if (B == null || cpf != cpfbuscado) {
+    if (cpfbuscado == null || cpf != cpfbuscado) {
         if (cpf.trim() != '') {
             $.post('Ajax/Verificar_Duplicidade_CPF_Cliente.php',
                 { cpf_cliente: cpf },
@@ -205,7 +205,7 @@ function ValidarCPFCadastroCliente(cpf, cpfbuscado) {
 
 function ValidarCPFCadastroFuncionario(cpf, cpfbuscado) {
 
-    if (B == null || cpf != cpfbuscado) {
+    if (cpfbuscado == null || cpf != cpfbuscado) {
         if (cpf.trim() != '') {
             $.post('Ajax/Verificar_Duplicidade_CPF_Funcionario.php',
                 { cpf_funcionario: cpf },
