@@ -78,7 +78,7 @@ $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
             <div class="block-header">
                 <h2>
                     <?= $cod == '' ? 'Novo' : 'Alterar' ?> Ordem de Serviço
-                    <small>Aqui você <?= $cod== '' ? 'cadastra' : 'altere' ?> cadastra um novo ordem de serviço</a></small>
+                    <small>Aqui você <?= $cod== '' ? 'cadastra' : 'altere' ?> um novo ordem de serviço</a></small>
                 </h2>
             </div>
 
