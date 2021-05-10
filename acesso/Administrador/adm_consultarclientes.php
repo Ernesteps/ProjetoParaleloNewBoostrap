@@ -104,7 +104,6 @@ $clientes = $ctrl_cliente->ConsultarClienteCTRL();
                                                     <div class="row js-modal-buttons demo-button-sizes">
                                                         <div class="align-center">
                                                             <a href="adm_cliente.php?cod=<?= $clientes[$i]['id_cliente'] ?>" data-color="orange" class="btn bg-orange waves-effect">Alterar</a>
-                                                            <!--<button type="button" class="btn bg-red waves-effect" data-toggle="modal" data-target="#modal_excluir" onclick="CarregarDadosExcluir('<?= $clientes[$i]['id_cliente'] ?>','<?= $clientes[$i]['nome_cliente'] ?>')">Excluir</button>-->
                                                             <button type="button" class="btn bg-red waves-effect" onclick="ExclusaoCliente('<?= $clientes[$i]['id_cliente'] ?>','<?= $clientes[$i]['nome_cliente'] ?>')">Excluir</button>
                                                         </div>
                                                     </div>

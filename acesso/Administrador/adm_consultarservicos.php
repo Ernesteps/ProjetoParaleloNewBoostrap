@@ -106,7 +106,6 @@ $servicosEnc = $ctrl_servico->PesquisarOrdemServicoEncerradoCTRL();
                                                     <div class="row">
                                                         <div class="align-center">
                                                             <a href="adm_servico.php?cod=<?= $servicosAnd[$i]['id_ordem_servico'] ?>" data-color="orange" class="btn bg-orange waves-effect">Alterar</a>
-                                                            <!--<button type="button" class="btn bg-red waves-effect" data-toggle="modal" data-target="#modal_excluir" onclick="CarregarDadosExcluir('<?= $servicosAnd[$i]['id_ordem_servico'] ?>','<?= $servicosAnd[$i]['desc_servico'] ?>')">Encerrar</button>-->
                                                             <button type="button" class="btn bg-red waves-effect" onclick="ExclusaoOrdemServico('<?= $servicosAnd[$i]['id_ordem_servico'] ?>','<?= $servicosAnd[$i]['desc_servico'] ?>','<?= $servicosAnd[$i]['data_servico'] ?>')">Encerrar</button>
                                                         </div>
                                                     </div>

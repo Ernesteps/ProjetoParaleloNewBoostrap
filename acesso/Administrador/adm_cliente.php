@@ -117,7 +117,7 @@ if (isset($_POST['btn_gravar'])) {
                                     <div class="help-info">Digite o endereço</div>
                                 </div>
 
-                                <button class="btn btn-primary waves-effect" name="btn_gravar" onclick="<?= $cod == '' ? 'return InserirCliente()' : 'return AlterarCliente()' ?>"><?= $cod == '' ? 'Cadastrar' : 'Alterar' ?></button>
+                                <button class="btn btn-primary waves-effect" name="btn_gravar" onclick="<?= $cod == '' ? 'return InserirCliente()' : 'return AlterarCliente(1)' ?>"><?= $cod == '' ? 'Cadastrar' : 'Alterar' ?></button>
 
                             </form>
                         </div>

@@ -53,3 +53,28 @@ Erro: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or upd
 Data: 23/04/2021 Hora: 14:59
 Função Chamado: ExcluirClienteDAO
 Id Usuario Logado: 1
+****************************************************************
+Erro: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`db_projeto_paralelo`.`tb_ordem_servico`, CONSTRAINT `fk_tb_ordem_servico_tb_cliente1` FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Data: 10/05/2021 Hora: 11:26
+Função Chamado: ExcluirClienteDAO
+Id Usuario Logado: 1
+****************************************************************
+Erro: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`db_projeto_paralelo`.`tb_ordem_servico`, CONSTRAINT `fk_tb_ordem_servico_tb_cliente1` FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Data: 10/05/2021 Hora: 11:26
+Função Chamado: ExcluirClienteDAO
+Id Usuario Logado: 1
+****************************************************************
+Erro: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`db_projeto_paralelo`.`tb_ordem_servico`, CONSTRAINT `fk_tb_ordem_servico_tb_cliente1` FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Data: 10/05/2021 Hora: 11:26
+Função Chamado: ExcluirClienteDAO
+Id Usuario Logado: 1
+****************************************************************
+Erro: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`db_projeto_paralelo`.`tb_ordem_servico`, CONSTRAINT `fk_tb_ordem_servico_tb_cliente1` FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Data: 10/05/2021 Hora: 11:28
+Função Chamado: ExcluirClienteDAO
+Id Usuario Logado: 1
+****************************************************************
+Erro: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`db_projeto_paralelo`.`tb_ordem_servico`, CONSTRAINT `fk_tb_ordem_servico_tb_cliente1` FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Data: 10/05/2021 Hora: 11:29
+Função Chamado: ExcluirClienteDAO
+Id Usuario Logado: 1

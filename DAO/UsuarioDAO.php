@@ -2,48 +2,59 @@
 
 require_once 'Conexao.php';
 
-class UsuarioDAO extends Conexao{
+class UsuarioDAO extends Conexao
+{
 
-    public function InserirUsuarioDAO(UsuarioVO $vo){
-        //1º Passo: Obter o objeto de conxexão. Para isso crie uma variável
-        $conexao = parent::retornaConexao(); //Parent - Acesso de recursos da classe
+    /** @var PDO */
+    private $conexao;
 
-        //2º Passo: Criar uma variavel que armazena o comando
-        $comando_sql = 'insert into tb_usuario (nome_usuario,cpf_usuario,email_usuario,tel_usuario,endereco_usuario,senha_usuario) value (?,?,?,?,?,?)'; //Informação dinamica usa-se ?;
-    
-        //3ºPasso: Criar o objeto que será levado para o banco de dados
-        $sql = new PDOStatement();
+    /** @var PDOStatement */
+    private $sql;
 
-        //4º Passo: O objeto $sql deverá receber a conexão preparada para o comando
-        $sql = $conexao->prepare($comando_sql);
+    public function __construct()
+    {
+        $this->conexao = parent::retornaConexao();
+        $this->sql = new PDOStatement();
+    }
 
-        //5º Passo: Observar se tem ? no comando_sql, se tiver, configurar os BindValues
-        $sql->bindValue(1, $vo->getNome());
-        $sql->bindValue(2, $vo->getCPF());
-        $sql->bindValue(3, $vo->getEmail());
-        $sql->bindValue(4, $vo->getTelefone());
-        $sql->bindValue(5, $vo->getEndereco());
-        $sql->bindValue(6, $vo->getSenha());
-        
-        try{
-            $sql->execute();
+    public function InserirUsuarioDAO(UsuarioVO $vo)
+    {
+        $comando_sql = 'insert into tb_usuario 
+                            (nome_usuario,cpf_usuario,email_usuario,tel_usuario,endereco_usuario,senha_usuario) 
+                        value (?,?,?,?,?,?)'; 
+        $this->sql = $this->conexao->prepare($comando_sql);
+
+        $i=1;
+        $this->sql->bindValue($i++, $vo->getNome());
+        $this->sql->bindValue($i++, $vo->getCPF());
+        $this->sql->bindValue($i++, $vo->getEmail());
+        $this->sql->bindValue($i++, $vo->getTelefone());
+        $this->sql->bindValue($i++, $vo->getEndereco());
+        $this->sql->bindValue($i++, $vo->getSenha());
+
+        try {
+            $this->sql->execute();
             return 1;
-        }catch(Exception $ex){
-            //echo $ex->getMessage(); //Retornar erro tecnico
+        } catch (Exception $ex) {
             return -1;
         }
     }
 
-    public function ConsultarUsuarioDAO(){
-        $conexao = parent::retornaConexao();
+    public function ConsultarUsuarioDAO()
+    {
+        $comando_sql = 'select id_usuario, 
+                               nome_usuario, 
+                               cpf_usuario, 
+                               email_usuario, 
+                               tel_usuario, 
+                               endereco_usuario, 
+                               senha_usuario 
+                            from tb_usuario 
+                            order by nome_usuario';
+        $this->sql = $this->conexao->prepare($comando_sql);
+        $this->sql->setFetchMode(PDO::FETCH_ASSOC);
+        $this->sql->execute();
 
-        $comando_sql = 'select id_usuario, nome_usuario, cpf_usuario, email_usuario, tel_usuario, endereco_usuario, senha_usuario from tb_usuario order by nome_usuario';
-
-        $sql = new PDOStatement();
-        $sql = $conexao->prepare($comando_sql);
-        $sql->setFetchMode(PDO::FETCH_ASSOC); //Enxuta as informações da consulta, mostrando apenas as informçoes importantes
-        $sql->execute();
-
-        return $sql->fetchAll(); //Varrer tudo, ou seja, retornar tudo, ou no caso, resultados.
+        return $this->sql->fetchAll();
     }
 }

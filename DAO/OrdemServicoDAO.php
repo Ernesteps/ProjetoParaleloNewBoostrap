@@ -8,35 +8,35 @@ define('EncerrarOrdemServico', 'ExcluirOrdemServicoDAO');
 
 class OrdemServicoDAO extends Conexao
 {
+    /** @var PDO */
+    private $conexao;
+
+    /** @var PDOStatement */
+    private $sql;
+
+    public function __construct()
+    {
+        $this->conexao = parent::retornaConexao();
+        $this->sql = new PDOStatement();
+    }
 
     public function InserirOrdemServicoDAO(OrdemServicoVO $vo, $idUser)
     {
-
-        $conexao = parent::retornaConexao();
         $comando_sql = 'insert into tb_ordem_servico
-                        (
-                            data_servico,
-                            desc_servico,
-                            valor_servico,
-                            id_func,
-                            id_cliente,
-                            id_usuario
-                        )
+                            (data_servico,desc_servico,valor_servico,id_func,id_cliente,id_usuario)
                         value (?,?,?,?,?,?)';
-
-        $sql = new PDOStatement();
-        $sql = $conexao->prepare($comando_sql);
+        $this->sql = $this->conexao->prepare($comando_sql);
 
         $i = 1;
-        $sql->bindValue($i++, $vo->getDataServico());
-        $sql->bindValue($i++, $vo->getDescServico());
-        $sql->bindValue($i++, $vo->getValorServico());
-        $sql->bindValue($i++, $vo->getIdFunc());
-        $sql->bindValue($i++, $vo->getIdCliente());
-        $sql->bindValue($i++, $vo->getIduser());
+        $this->sql->bindValue($i++, $vo->getDataServico());
+        $this->sql->bindValue($i++, $vo->getDescServico());
+        $this->sql->bindValue($i++, $vo->getValorServico());
+        $this->sql->bindValue($i++, $vo->getIdFunc());
+        $this->sql->bindValue($i++, $vo->getIdCliente());
+        $this->sql->bindValue($i++, $vo->getIduser());
 
         try {
-            $sql->execute();
+            $this->sql->execute();
             return 1;
         } catch (Exception $ex) {
             parent::GravarErro($ex->getMessage(), $idUser, InserirOrdemServico);
@@ -46,29 +46,25 @@ class OrdemServicoDAO extends Conexao
 
     public function AlterarOrdemServicoDAO(OrdemServicoVO $vo, $idUser)
     {
-
-        $conexao = parent::retornaConexao();
         $comando_sql = 'update tb_ordem_servico
-                        set desc_servico=?,
-                        valor_servico=?,
-                        id_func=?,
-                        id_cliente=?,
-                        id_usuario=?
-                    where id_ordem_servico=?';
-
-        $sql = new PDOStatement();
-        $sql = $conexao->prepare($comando_sql);
+                            set desc_servico=?,
+                                valor_servico=?,
+                                id_func=?,
+                                id_cliente=?,
+                                id_usuario=?
+                            where id_ordem_servico=?';
+        $this->sql = $this->conexao->prepare($comando_sql);
 
         $i = 1;
-        $sql->bindValue($i++, $vo->getDescServico());
-        $sql->bindValue($i++, $vo->getValorServico());
-        $sql->bindValue($i++, $vo->getIdFunc());
-        $sql->bindValue($i++, $vo->getIdCliente());
-        $sql->bindValue($i++, $vo->getIduser());
-        $sql->bindValue($i++, $vo->getIdServico());
+        $this->sql->bindValue($i++, $vo->getDescServico());
+        $this->sql->bindValue($i++, $vo->getValorServico());
+        $this->sql->bindValue($i++, $vo->getIdFunc());
+        $this->sql->bindValue($i++, $vo->getIdCliente());
+        $this->sql->bindValue($i++, $vo->getIduser());
+        $this->sql->bindValue($i++, $vo->getIdServico());
 
         try {
-            $sql->execute();
+            $this->sql->execute();
             return 1;
         } catch (Exception $ex) {
             parent::GravarErro($ex->getMessage(), $idUser, AlterarOrdemServico);
@@ -78,7 +74,6 @@ class OrdemServicoDAO extends Conexao
 
     public function DetalharOrdemServicoDAO($idOrdemServico)
     {
-        $conexao = parent::retornaConexao();
         $comando_sql = 'select
                             serv.id_ordem_servico,
                             serv.desc_servico,
@@ -87,20 +82,18 @@ class OrdemServicoDAO extends Conexao
                             serv.id_cliente
                         from tb_ordem_servico as serv
                         where serv.id_ordem_servico=?';
+        $this->sql = $this->conexao->prepare($comando_sql);
 
-        $sql = new PDOStatement();
-        $sql = $conexao->prepare($comando_sql);
         $i = 1;
-        $sql->bindValue($i++, $idOrdemServico);
-        $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();
+        $this->sql->bindValue($i++, $idOrdemServico);
+        $this->sql->setFetchMode(PDO::FETCH_ASSOC);
+        $this->sql->execute();
 
-        return $sql->fetchAll();
+        return $this->sql->fetchAll();
     }
 
     public function PesquisarOrdemServicoAndamentoDAO()
     {
-        $conexao = parent::retornaConexao();
         $comando_sql = 'select
                             serv.id_ordem_servico,
                             serv.data_servico,
@@ -114,18 +107,15 @@ class OrdemServicoDAO extends Conexao
                         inner join tb_funcionario as func
                             on serv.id_func = func.id_func
                         where data_remover is null';
+        $this->sql = $this->conexao->prepare($comando_sql);
+        $this->sql->setFetchMode(PDO::FETCH_ASSOC);
+        $this->sql->execute();
 
-        $sql = new PDOStatement();
-        $sql = $conexao->prepare($comando_sql);
-        $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();
-
-        return $sql->fetchAll();
+        return $this->sql->fetchAll();
     }
 
     public function PesquisarOrdemServicoEncerradoDAO()
     {
-        $conexao = parent::retornaConexao();
         $comando_sql = 'select
                             serv.id_ordem_servico,
                             serv.data_servico,
@@ -140,31 +130,26 @@ class OrdemServicoDAO extends Conexao
                         inner join tb_funcionario as func
                             on serv.id_func = func.id_func
                         where data_remover is not null';
+        $this->sql = $this->conexao->prepare($comando_sql);
+        $this->sql->setFetchMode(PDO::FETCH_ASSOC);
+        $this->sql->execute();
 
-        $sql = new PDOStatement();
-        $sql = $conexao->prepare($comando_sql);
-        $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $sql->execute();
-
-        return $sql->fetchAll();
+        return $this->sql->fetchAll();
     }
 
     public function EncerrarOrdemServicoDAO(OrdemServicoVO $vo, $idUser)
     {
-        $conexao = parent::retornaConexao();
         $comando_sql = 'update tb_ordem_servico
-                        set data_remover = ?
-                        where id_ordem_servico = ?';
-
-        $sql = new PDOStatement();
-        $sql = $conexao->prepare($comando_sql);
+                            set data_remover = ?
+                            where id_ordem_servico = ?';
+        $this->sql = $this->conexao->prepare($comando_sql);
 
         $i = 1;
-        $sql->bindValue($i++, $vo->getDataRemover());
-        $sql->bindValue($i++, $vo->getIdServico());
+        $this->sql->bindValue($i++, $vo->getDataRemover());
+        $this->sql->bindValue($i++, $vo->getIdServico());
 
         try {
-            $sql->execute();
+            $this->sql->execute();
             return 1;
         } catch (Exception $ex) {
             parent::GravarErro($ex->getMessage(), $idUser, EncerrarOrdemServico);

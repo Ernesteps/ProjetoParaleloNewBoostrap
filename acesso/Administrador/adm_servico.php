@@ -137,7 +137,7 @@ $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
 
                                 </div>
 
-                                <button class="btn btn-primary waves-effect" name="btn_gravar" onclick="<?= $cod == '' ? 'return InserirOrdemServico()' : 'return AlterarOrdemServico()' ?>"><?= $cod == '' ? 'Gravar' : 'Alterar' ?></button>
+                                <button class="btn btn-primary waves-effect" name="btn_gravar" onclick="<?= $cod == '' ? 'return InserirOrdemServico()' : 'return AlterarOrdemServico(3)' ?>"><?= $cod == '' ? 'Gravar' : 'Alterar' ?></button>
 
                             </form>
 

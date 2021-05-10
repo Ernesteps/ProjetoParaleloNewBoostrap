@@ -104,7 +104,6 @@ $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
                                                     <div class="row js-modal-buttons demo-button-sizes">
                                                         <div class="align-center">
                                                             <a href="adm_funcionario.php?cod=<?= $funcionarios[$i]['id_func'] ?>" data-color="orange" class="btn bg-orange waves-effect">Alterar</a>
-                                                            <!--<button type="button" class="btn bg-red waves-effect" data-toggle="modal" data-target="#modal_excluir" onclick="CarregarDadosExcluir('<?= $funcionarios[$i]['id_func'] ?>','<?= $funcionarios[$i]['nome_func'] ?>')">Excluir</button> -->
                                                             <button type="button" class="btn bg-red waves-effect" onclick="ExclusaoFuncionario('<?= $funcionarios[$i]['id_func'] ?>','<?= $funcionarios[$i]['nome_func'] ?>')">Excluir</button>
                                                         </div>
                                                     </div>

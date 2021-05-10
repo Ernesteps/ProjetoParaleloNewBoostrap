@@ -1,8 +1,24 @@
-﻿//function CarregarDadosExcluir(id, nome) {
-//
-//    $("#cod_item").val(id);
-//    $("#nome_excluir").html(nome);
-//}
+﻿function MensagemSucessoComMudancadePagina($tipo) {
+    swal({
+        title: "Sucesso!",
+        text: "Operação realizada.",
+        type: "success",
+        showCancelButton: false,
+        confirmButtonColor: "#4CAF50",
+        confirmButtonText: "OK",
+        closeOnConfirm: true,
+        closeOnCancel: false
+    }, function () {
+        if($tipo == 1)
+            window.location = "adm_consultarclientes.php";
+
+        else if($tipo == 2)
+            window.location = "adm_consultarfuncionarios.php";
+
+        else if($tipo == 3)
+            window.location = "adm_consultarservicos.php";
+    });
+}
 
 function MensagemSucessoComFunctionRefreshPage() {
     swal({
@@ -12,7 +28,7 @@ function MensagemSucessoComFunctionRefreshPage() {
         showCancelButton: false,
         confirmButtonColor: "#4CAF50",
         confirmButtonText: "OK",
-        closeOnConfirm: false,
+        closeOnConfirm: true,
         closeOnCancel: false
     }, function () {
         document.location.reload(true);
@@ -31,7 +47,7 @@ function MensagemAlertaComFunctionRefreshPage() {
         showCancelButton: false,
         confirmButtonColor: "#FF9800",
         confirmButtonText: "OK",
-        closeOnConfirm: false,
+        closeOnConfirm: true,
         closeOnCancel: false
     }, function () {
         document.location.reload(true);
@@ -50,7 +66,7 @@ function MensagemErroComFunctionRefreshPage() {
         showCancelButton: false,
         confirmButtonColor: "#F44336",
         confirmButtonText: "OK",
-        closeOnConfirm: false,
+        closeOnConfirm: true,
         closeOnCancel: false
     }, function () {
         document.location.reload(true);
@@ -63,8 +79,8 @@ function MensagemErroSemFunction() {
 
 function CarregarDadosClienteAlterar(id, nome, cpf, email, telefone, endereco) {
 
-    $("#cod_alt").val(id); //Val pra jogar valor, input...
-    $("#nome_alt").val(nome); //HTML Preenche algo na tela, uma label ou descrição
+    $("#cod_alt").val(id);
+    $("#nome_alt").val(nome);
     $("#cpf_alt").val(cpf);
     $("#email_alt").val(email);
     $("#telefone_alt").val(telefone);
@@ -184,7 +200,7 @@ function ExclusaoOrdemServico(id, nome, data) {
 
 function ValidarCPFCadastroCliente(cpf, cpfbuscado) {
 
-    if (B == null || cpf != cpfbuscado) {
+    if (cpfbuscado == null || cpf != cpfbuscado) {
         if (cpf.trim() != '') {
             $.post('Ajax/Verificar_Duplicidade_CPF_Cliente.php',
                 { cpf_cliente: cpf },
@@ -205,7 +221,7 @@ function ValidarCPFCadastroCliente(cpf, cpfbuscado) {
 
 function ValidarCPFCadastroFuncionario(cpf, cpfbuscado) {
 
-    if (B == null || cpf != cpfbuscado) {
+    if (cpfbuscado == null || cpf != cpfbuscado) {
         if (cpf.trim() != '') {
             $.post('Ajax/Verificar_Duplicidade_CPF_Funcionario.php',
                 { cpf_funcionario: cpf },
@@ -253,7 +269,7 @@ function InserirCliente() {
     return false;
 }
 
-function AlterarCliente() {
+function AlterarCliente($tipo) {
 
     var cod_user = $("#cod").val().trim();
     var nome = $("#nome").val().trim();
@@ -272,7 +288,7 @@ function AlterarCliente() {
             end_cliente: endereco,
             acao: 'A'
         }, function (retorno_chamada) {
-            if (retorno_chamada == 1) { MensagemSucessoSemFunction(); }
+            if (retorno_chamada == 1) { MensagemSucessoComMudancadePagina($tipo); }
             else { MensagemErroSemFunction(); }
         });
     return false;
@@ -307,7 +323,7 @@ function InserirFuncionario() {
     return false;
 }
 
-function AlterarFuncionario() {
+function AlterarFuncionario($tipo) {
 
     var cod_funcionario = $("#cod").val().trim();
     var nome = $("#nome").val().trim();
@@ -326,7 +342,7 @@ function AlterarFuncionario() {
             end_func: endereco,
             acao: 'A'
         }, function (retorno_chamada) {
-            if (retorno_chamada == 1) { MensagemSucessoSemFunction(); }
+            if (retorno_chamada == 1) { MensagemSucessoComMudancadePagina($tipo); }
             else { MensagemErroSemFunction(); }
         });
     return false;
@@ -357,7 +373,7 @@ function InserirOrdemServico() {
     return false;
 }
 
-function AlterarOrdemServico() {
+function AlterarOrdemServico($tipo) {
 
     var cod_serv = $("#cod").val().trim();
     var funcionario = $("#funcionario").val().trim();
@@ -374,7 +390,7 @@ function AlterarOrdemServico() {
             valor_servico: valor,
             acao: 'A'
         }, function (retorno_chamada) {
-            if (retorno_chamada == 1) { MensagemSucessoSemFunction(); }
+            if (retorno_chamada == 1) { MensagemSucessoComMudancadePagina($tipo); }
             else { MensagemErroSemFunction(); }
         });
     return false;
