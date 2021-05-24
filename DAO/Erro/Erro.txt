@@ -78,3 +78,13 @@ Erro: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or upd
 Data: 10/05/2021 Hora: 11:29
 Função Chamado: ExcluirClienteDAO
 Id Usuario Logado: 1
+****************************************************************
+Erro: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_projeto_paralelo`.`tb_cliente`, CONSTRAINT `fk_tb_cliente_tb_usuario1` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Data: 23/05/2021 Hora: 15:53
+Função Chamado: InserirClienteDAO
+Id Usuario Logado: 1
+****************************************************************
+Erro: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`db_projeto_paralelo`.`tb_cliente`, CONSTRAINT `fk_tb_cliente_tb_usuario1` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Data: 23/05/2021 Hora: 15:54
+Função Chamado: InserirClienteDAO
+Id Usuario Logado: 1

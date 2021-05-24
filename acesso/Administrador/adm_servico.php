@@ -26,7 +26,7 @@ if(isset($_GET['cod']) && is_numeric($_GET['cod'])){
 
 }
 
-if (isset($_POST['btn_gravar'])) {
+else if (isset($_POST['btn_gravar'])) {
 
     $vo = new OrdemServicoVO();
     $ctrl = new OrdemServicoCTRL();
