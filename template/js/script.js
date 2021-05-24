@@ -9,13 +9,13 @@
         closeOnConfirm: true,
         closeOnCancel: false
     }, function () {
-        if($tipo == 1)
+        if ($tipo == 1)
             window.location = "adm_consultarclientes.php";
 
-        else if($tipo == 2)
+        else if ($tipo == 2)
             window.location = "adm_consultarfuncionarios.php";
 
-        else if($tipo == 3)
+        else if ($tipo == 3)
             window.location = "adm_consultarservicos.php";
     });
 }
@@ -289,6 +289,25 @@ function AlterarCliente($tipo) {
             acao: 'A'
         }, function (retorno_chamada) {
             if (retorno_chamada == 1) { MensagemSucessoComMudancadePagina($tipo); }
+            else { MensagemErroSemFunction(); }
+        });
+    return false;
+}
+
+function AtualizarUsuario() {
+
+    var email = $("#email").val().trim();
+    var telefone = $("#telefone").val().trim();
+    var endereco = $("#endereco").val().trim();
+
+    $.post("Ajax/Usuario_Ajax.php",
+        {
+            email_adm: email,
+            tel_adm: telefone,
+            endereco_adm: endereco,
+            acao: 'A'
+        }, function (retorno_chamada) {
+            if (retorno_chamada == 1) { MensagemSucessoSemFunction(); }
             else { MensagemErroSemFunction(); }
         });
     return false;

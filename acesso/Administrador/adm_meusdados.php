@@ -1,25 +1,24 @@
 <?php
 
-require_once '../../CTRL/MeusdadosCTRL.php';
+require_once '../../CTRL/UsuarioCTRL.php';
 require_once '../../VO/UsuarioVO.php';
+require_once '../../CTRL/UtilCTRL.php';
 
-//isset (Se existe) $_POST é vetorial []
-if (isset($_POST['btn_gravar'])) {
+$cod = UtilCTRL::CodigoUserLogado();
+$ctrl = new UsuarioCTRL();
+
+if (isset($_POST['btn_atualizar'])) {
 
     $vo = new UsuarioVO();
-    $ctrl = new MeusdadosCTRL();
 
-    $nome = $_POST['nome'];
-    $vo->setNome($nome);
-    $email = $_POST['email'];
-    $vo->setEmail($email);
-    $telefone = $_POST['telefone'];
-    $vo->setTelefone($telefone);
-    $endereco = $_POST['endereco'];
-    $vo->setEndereco($endereco);
+    $vo->setEmail($_POST['email']);
+    $vo->setTelefone($_POST['telefone']);
+    $vo->setEndereco($_POST['endereco']);
 
-    $ret = $ctrl->InserirMeusdadosCTRL($vo);
+    $ret = $ctrl->AlterarUsuarioCTRL($vo);
 }
+
+$dados = $ctrl->DetalharUsuarioCTRL();
 
 ?>
 
@@ -57,18 +56,27 @@ if (isset($_POST['btn_gravar'])) {
                         <div class="body">
 
                             <form id="form_advanced_validation" method="post" action="adm_meusdados.php">
+                                <input type="hidden" name="cod" id="cod" value="<?= $cod ?>">
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="nome" id="nome" maxlength="40" required>
+                                        <input type="text" class="form-control" name="nome" id="nome" value="<?= $dados[0]['nome_usuario'] ?>" readonly>
                                         <label class="form-label">Nome</label>
                                     </div>
-                                    <div class="help-info">Digite o nome</div>
+                                    <div class="help-info" style = "color: red;">Não é permitido a alteração do Nome</div>
                                 </div>
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="email" class="form-control" name="email" id="email" required>
+                                        <input type="text" class="form-control" name="CPF" id="CPF" value="<?= $dados[0]['cpf_usuario'] ?>" readonly>
+                                        <label class="form-label">CPF</label>
+                                    </div>
+                                    <div class="help-info" style = "color: red;">Não é permitido a alteração do CPF</div>
+                                </div>
+
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="email" class="form-control" name="email" id="email" value="<?= $dados[0]['email_usuario'] ?>" required>
                                         <label class="form-label">Email</label>
                                     </div>
                                     <div class="help-info">Digite E-mail válido</div>
@@ -76,7 +84,7 @@ if (isset($_POST['btn_gravar'])) {
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="telefone" id="telefone" required>
+                                        <input type="text" class="form-control" name="telefone" id="telefone" value="<?= $dados[0]['tel_usuario'] ?>" required>
                                         <label class="form-label">Telefone</label>
                                     </div>
                                     <div class="help-info">Digite o número do Telefone</div>
@@ -84,13 +92,13 @@ if (isset($_POST['btn_gravar'])) {
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="endereco" id="endereco" required>
+                                        <input type="text" class="form-control" name="endereco" id="endereco" value="<?= $dados[0]['endereco_usuario'] ?>" required>
                                         <label class="form-label">Endereço</label>
                                     </div>
                                     <div class="help-info">Digite o endereço</div>
                                 </div>
 
-                                <button class="btn btn-primary waves-effect" name="btn_gravar">Gravar</button>
+                                <button class="btn btn-primary waves-effect" id="btn_atualizar" name="btn_atualizar" onclick="return AtualizarUsuario()">Atualizar</button>
 
                             </form>
                         </div>

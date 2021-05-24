@@ -2,20 +2,37 @@
 require_once '../../CTRL/UsuarioCTRL.php';
 require_once '../../VO/UsuarioVO.php';
 
+$nome = '';
+$cpf = '';
+$email = '';
+$telefone = '';
+$endereco = '';
+
 $ctrl = new UsuarioCTRL();
 
 if (isset($_POST['btn_gravar'])) {
 
-    $vo = new UsuarioVO();
+    if ($_POST['password'] == $_POST['confirmpassword']) {
 
-    $vo->setNome($_POST['nome']);
-    $vo->setCPF($_POST['CPF']);
-    $vo->setEmail($_POST['email']);
-    $vo->setTelefone($_POST['telefone']);
-    $vo->setEndereco($_POST['endereco']);
-    $vo->setSenha($_POST['confirmpassword']);
+        $vo = new UsuarioVO();
 
-    $ret = $ctrl->InserirUsuarioCTRL($vo);
+        $vo->setNome($_POST['nome']);
+        $vo->setCPF($_POST['CPF']);
+        $vo->setEmail($_POST['email']);
+        $vo->setTelefone($_POST['telefone']);
+        $vo->setEndereco($_POST['endereco']);
+        $vo->setSenha($_POST['confirmpassword']);
+
+        $ret = $ctrl->InserirUsuarioCTRL($vo);
+
+    } else {
+        $nome = $_POST['nome'];
+        $cpf = $_POST['CPF'];
+        $email = $_POST['email'];
+        $telefone = $_POST['telefone'];
+        $endereco = $_POST['endereco'];
+        $ret = -3;
+    }
 }
 
 ?>
@@ -41,7 +58,7 @@ if (isset($_POST['btn_gravar'])) {
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" required autofocus>
+                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" value="<?php echo $nome; ?>" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -49,7 +66,7 @@ if (isset($_POST['btn_gravar'])) {
                             <i class="material-icons">contacts</i>
                         </span>
                         <div class="form-line">
-                            <input class="form-control" name="CPF" id="CPF" placeholder="CPF" maxlength="11" required>
+                            <input class="form-control" name="CPF" id="CPF" placeholder="CPF" maxlength="11" value="<?php echo $cpf; ?>" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -57,7 +74,7 @@ if (isset($_POST['btn_gravar'])) {
                             <i class="material-icons">email</i>
                         </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -65,7 +82,7 @@ if (isset($_POST['btn_gravar'])) {
                             <i class="material-icons">call</i>
                         </span>
                         <div class="form-line">
-                            <input class="form-control" name="telefone" id="telefone" placeholder="Telefone" required>
+                            <input class="form-control" name="telefone" id="telefone" placeholder="Telefone" value="<?php echo $telefone; ?>" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -73,7 +90,7 @@ if (isset($_POST['btn_gravar'])) {
                             <i class="material-icons">business</i>
                         </span>
                         <div class="form-line">
-                            <input class="form-control" name="endereco" id="endereco" placeholder="Endereço" required>
+                            <input class="form-control" name="endereco" id="endereco" placeholder="Endereço" value="<?php echo $endereco; ?>" required>
                         </div>
                     </div>
                     <div class="input-group">
