@@ -4,6 +4,7 @@ require_once 'Conexao.php';
 
 define('InserirAdministrador', 'InserirAdministradorDAO');
 define('AlterarAdministrador', 'AlterarAdministradorDAO');
+define('AlterarSenhaAdministrador', 'AlterarSenhaDAO');
 
 class UsuarioDAO extends Conexao
 {
@@ -53,16 +54,16 @@ class UsuarioDAO extends Conexao
                             where id_usuario = ?';
         $this->sql = $this->conexao->prepare($comando_sql);
 
-        $i=1;
+        $i = 1;
         $this->sql->bindValue($i++, $vo->getEmail());
         $this->sql->bindValue($i++, $vo->getTelefone());
         $this->sql->bindValue($i++, $vo->getEndereco());
         $this->sql->bindValue($i++, $vo->getIdUser());
 
-        try{
+        try {
             $this->sql->execute();
             return 1;
-        } catch (Exception $ex){
+        } catch (Exception $ex) {
             parent::GravarErro($ex->getMessage(), $vo->getIdUser(), AlterarAdministrador);
             return -1;
         }
@@ -104,5 +105,40 @@ class UsuarioDAO extends Conexao
         $this->sql->execute();
 
         return $this->sql->fetchAll();
+    }
+
+    public function RecuperarSenhaAtualDAO($idUser)
+    {
+        $comando_sql = 'select senha_usuario
+                            from tb_usuario
+                            where id_usuario = ?';
+        $this->sql = $this->conexao->prepare($comando_sql);
+
+        $i=1;
+        $this->sql->bindValue($i++, $idUser);
+        $this->sql->setFetchMode(PDO::FETCH_ASSOC);
+        $this->sql->execute();
+
+        return $this->sql->fetchAll();
+    }
+
+    public function AlterarSenhaDAO($idUser, $senha)
+    {
+        $comando_sql = 'update tb_usuario
+                            set senha_usuario = ?
+                            where id_usuario = ?';
+        $this->sql = $this->conexao->prepare($comando_sql);
+
+        $i=1;
+        $this->sql->bindValue($i++, $senha);
+        $this->sql->bindValue($i++, $idUser);
+
+        try {
+            $this->sql->execute();
+            return 1;
+        } catch (Exception $ex) {
+            parent::GravarErro($ex->getMessage(), $idUser, AlterarSenhaAdministrador);
+            return -1;
+        }
     }
 }

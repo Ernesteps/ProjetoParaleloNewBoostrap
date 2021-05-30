@@ -18,7 +18,7 @@ if (isset($_POST['btn_atualizar'])) {
     $ret = $ctrl->AlterarUsuarioCTRL($vo);
 }
 
-$dados = $ctrl->DetalharUsuarioCTRL();
+$dados = $ctrl->DetalharUsuarioCTRL('');
 
 ?>
 

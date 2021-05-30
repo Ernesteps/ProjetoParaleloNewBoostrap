@@ -198,6 +198,26 @@ function ExclusaoOrdemServico(id, nome, data) {
     return false;
 }
 
+function ValidarSenhaAtual(senha_atual_digitado){
+
+    $.post("Ajax/Validar_Senha_Atual_Ajax.php",
+    {
+        senha_atual: senha_atual_digitado
+    }, function (retorno_chamada) {
+        if (retorno_chamada == 1){
+            $("#val_senha_atual").hide();
+            $("#Senha_atual").hide();
+            $("#SenhaAtual").hide();
+            $("#SenhaPreenchida").show();
+            $("#Nova_senha").focus();
+        } else {
+            $("#val_senha_atual").html('A senha digitada não coincide com o do Usuário logado.');
+            $("#val_senha_atual").show();
+        }
+    });
+    return false;
+}
+
 function ValidarCPFCadastroCliente(cpf, cpfbuscado) {
 
     if (cpfbuscado == null || cpf != cpfbuscado) {

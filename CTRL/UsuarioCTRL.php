@@ -29,10 +29,30 @@ class UsuarioCTRL
         return $dao->AlterarUsuarioDAO($vo);
     }
     
-    public function DetalharUsuarioCTRL()
+    public function DetalharUsuarioCTRL($idUser)
     {
         $dao = new UsuarioDAO();
-        return $dao->DetalharUsuarioDAO(UtilCTRL::CodigoUserLogado());
+        return $dao->DetalharUsuarioDAO($idUser == '' ? UtilCTRL::CodigoUserLogado() : $idUser);
+    }
+
+    public function ValidarSenhaAtualCTRL($senha_atual)
+    {
+        $dao = new UsuarioDAO();
+
+        $user_senha_hash = $dao->RecuperarSenhaAtualDAO(UtilCTRL::CodigoUserLogado());
+        $senha_hash = $user_senha_hash[0]['senha_usuario'];
+
+        return password_verify($senha_atual, $senha_hash);
+    }
+
+    public function AlterarSenhaCTRL($senha, $rsenha)
+    {
+        if(trim($senha) != trim($rsenha)){
+            return -3;
+        }
+
+        $dao = new UsuarioDAO();
+        return $dao->AlterarSenhaDAO(UtilCTRL::CodigoUserLogado(), UtilCTRL::RetornarCriptografado($senha));
     }
     
     public function ValidarLoginCTRL($cpf, $senha)
