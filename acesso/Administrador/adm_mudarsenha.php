@@ -1,20 +1,14 @@
 <?php
+require_once '../../CTRL/UsuarioCTRL.php';
+require_once '../../CTRL/UtilCTRL.php';
 
-require_once '../../CTRL/MudarsenhaCTRL.php';
-require_once '../../VO/UsuarioVO.php';
+$ctrl = new UsuarioCTRL();
 
-//isset (Se existe) $_POST é vetorial []
-if (isset($_POST['btn_gravar'])) {
-
-    $vo = new UsuarioVO();
-    $ctrl = new MudarsenhaCTRL();
-
-    $senha = $_POST['Nova_senha'];
-    $vo->setSenha($senha);
-
-    $ret = $ctrl->InserirMudarsenhaCTRL($vo);
+if (isset($_POST['btn_alterar'])) {
+    $ret = $ctrl->AlterarSenhaCTRL($_POST['Nova_senha'], $_POST['Repetir_senha']);
 }
 
+$dados = $ctrl->DetalharUsuarioCTRL('');
 ?>
 
 <!DOCTYPE html>
@@ -28,10 +22,10 @@ if (isset($_POST['btn_gravar'])) {
 
     <?php
 
-        include_once '../../Base/_pageloader.php';
-        include_once '../../Base/_topo.php';
-        include_once '../../Base/_menu.php';
-        include_once '../../Base/_footer.php';
+    include_once '../../Base/_pageloader.php';
+    include_once '../../Base/_topo.php';
+    include_once '../../Base/_menu.php';
+    include_once '../../Base/_footer.php';
 
     ?>
 
@@ -52,31 +46,36 @@ if (isset($_POST['btn_gravar'])) {
 
                             <form id="form_advanced_validation" method="post" action="adm_mudarsenha.php">
 
+                            <div id="SenhaAtual" name="SenhaAtual">
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="password" class="form-control" name="Senha_atual" id="Senha_atual" maxlength="40" required>
+                                        <input type="password" class="form-control" name="Senha_atual" id="Senha_atual" oninput="ValidarSenhaAtual(document.getElementById('Senha_atual').value)" required>
                                         <label class="form-label">Senha atual</label>
                                     </div>
-                                    <div class="help-info">Digite a senha atual</div>
+                                    <div class="help-info">Digite a senha atual. A cada digito será verificado a senha.</div>
+                                    <label id="val_senha_atual" style = "color: red; font-size:11px; display: none"></label>
                                 </div>
+                            </div>
 
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="password" class="form-control" name="Nova_senha" id="Nova_senha" maxlength="40" required>
-                                        <label class="form-label">Nova senha</label>
+                                <div id="SenhaPreenchida" name="SenhaPreenchida" style="display: none;">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="password" class="form-control" name="Nova_senha" id="Nova_senha" minlength="6" required>
+                                            <label class="form-label">Nova senha</label>
+                                        </div>
+                                        <div class="help-info">Digite uma nova senha que seja no mínimo 6 caracteres</div>
                                     </div>
-                                    <div class="help-info">Digite uma nova senha</div>
-                                </div>
 
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="password" class="form-control" name="Repitir_senha" id="Repitir_senha" maxlength="40" required>
-                                        <label class="form-label">Repitir nova senha</label>
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="password" class="form-control" name="Repetir_senha" id="Repetir_senha" minlength="6" required>
+                                            <label class="form-label">Repetir nova senha</label>
+                                        </div>
+                                        <div class="help-info">Repita sua nova senha</div>
                                     </div>
-                                    <div class="help-info">Repita sua nova senha</div>
-                                </div>
 
-                                <button class="btn btn-primary waves-effect" name="btn_gravar">Gravar</button>
+                                    <button class="btn btn-primary waves-effect" id="btn_alterar" name="btn_alterar">Alterar</button>
+                                </div>
 
                             </form>
                         </div>
@@ -87,9 +86,9 @@ if (isset($_POST['btn_gravar'])) {
         </div>
     </section>
 
-    <?php 
+    <?php
     include_once '../../Base/_JQuery.php';
-    include_once '../../Base/_msg.php'; 
+    include_once '../../Base/_msg.php';
     ?>
 
 </body>

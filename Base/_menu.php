@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoParaleloNewBoostrap/CTRL/Usuar
 require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoParaleloNewBoostrap/CTRL/UtilCTRL.php';
 
 $ctrl = new UsuarioCTRL();
-$dadosWelcome = $ctrl->DetalharUsuarioCTRL();
+$dadosWelcome = $ctrl->DetalharUsuarioCTRL('');
 
 if(isset($_GET['close']) && $_GET['close'] == 1){
     UtilCTRL::Deslogar();
