@@ -7,29 +7,8 @@ require_once '../../CTRL/UtilCTRL.php';
 $ctrl_funcionario = new FuncionarioCTRL();
 
 if (isset($_POST['btn_excluir'])) {
-    $cod = $_POST['cod_item'];
-    $ret = $ctrl_funcionario->ExcluirFuncionarioCTRL($cod);
-
-}else if (isset($_POST['btn_alterar'])) {
-
-    $vo = new FuncionarioVO();
-    $nome = $_POST['nome_alt'];
-    $cpf = $_POST['cpf_alt']; 
-    $email = $_POST['email_alt'];
-    $telefone = $_POST['telefone_alt'];
-    $endereco = $_POST['endereco_alt'];
-    $cod = $_POST['cod_alt'];
-    
-    $vo->setNome_func($nome);
-    $vo->setCPF_func($cpf);
-    $vo->setEmail_func($email);
-    $vo->setTel_func($telefone);
-    $vo->setEndereco_func($endereco);
-    $vo->setID_func($cod);
-  
-    $ret = $ctrl_funcionario->AlterarFuncionarioCTRL($vo);
-  }
-
+    $ret = $ctrl_funcionario->ExcluirFuncionarioCTRL($_POST['cod_item']);
+}
 $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
 
 ?>
@@ -112,9 +91,6 @@ $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
                                         <?php } ?>
                                     </tbody>
                                 </table>
-                                <form method="post" action="adm_consultarfuncionarios.php">
-                                    <?php include_once '../../Base/_modal_excluir.php'; ?>
-                                </form>
                             </div>
                         </div>
                     </div>

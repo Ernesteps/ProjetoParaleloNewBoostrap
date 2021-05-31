@@ -27,22 +27,26 @@ class FuncionarioCTRL
         return $dao->AlterarFuncionarioDAO($vo, UtilCTRL::CodigoUserLogado());
     }
 
-    public function ConsultarFuncionarioCTRL(){
+    public function ConsultarFuncionarioCTRL()
+    {
         $dao = new FuncionarioDAO();
         return $dao->ConsultarFuncionarioDAO();
     }
 
-    public function DetalharFuncionario($idFuncionario){
+    public function DetalharFuncionario($idFuncionario)
+    {
         $dao = new FuncionarioDAO();
         return $dao->DetalharFuncionario($idFuncionario);
     }
 
-    public function ExcluirFuncionarioCTRL($idFuncionario){
+    public function ExcluirFuncionarioCTRL($idFuncionario)
+    {
         $dao = new FuncionarioDAO();
         return $dao->ExcluirFuncionarioDAO($idFuncionario, UtilCTRL::CodigoUserLogado());
     }
 
-    public function VerificarCPFCadastroFuncionarioCTRL($cpf){
+    public function VerificarCPFCadastroFuncionarioCTRL($cpf)
+    {
         $dao = new FuncionarioDAO();
         return $dao->VerificarCPFCadastroFuncionarioDAO($cpf);
     }

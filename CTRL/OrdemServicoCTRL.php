@@ -30,22 +30,26 @@ class OrdemServicoCTRL
         return $dao->AlterarOrdemServicoDAO($vo, UtilCTRL::CodigoUserLogado());
     }
 
-    public function DetalharOrdemServicoCTRL($idOrdemServico){
+    public function DetalharOrdemServicoCTRL($idOrdemServico)
+    {
         $dao = new OrdemServicoDAO();
         return $dao->DetalharOrdemServicoDAO($idOrdemServico);
     }
 
-    public function PesquisarOrdemServicoAndamentoCTRL(){
+    public function PesquisarOrdemServicoAndamentoCTRL()
+    {
         $dao = new OrdemServicoDAO();
         return $dao->PesquisarOrdemServicoAndamentoDAO();
     }
 
-    public function PesquisarOrdemServicoEncerradoCTRL(){
+    public function PesquisarOrdemServicoEncerradoCTRL()
+    {
         $dao = new OrdemServicoDAO();
         return $dao->PesquisarOrdemServicoEncerradoDAO();
     }
 
-    public function EncerrarOrdemServicoCTRL(OrdemServicoVO $vo){
+    public function EncerrarOrdemServicoCTRL(OrdemServicoVO $vo)
+    {
         $vo->setDataRemover(UtilCTRL::DataAtual());
 
         $dao = new OrdemServicoDAO();

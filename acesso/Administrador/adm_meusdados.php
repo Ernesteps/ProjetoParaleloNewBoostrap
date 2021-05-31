@@ -63,7 +63,7 @@ $dados = $ctrl->DetalharUsuarioCTRL('');
                                         <input type="text" class="form-control" name="nome" id="nome" value="<?= $dados[0]['nome_usuario'] ?>" readonly>
                                         <label class="form-label">Nome</label>
                                     </div>
-                                    <div class="help-info" style = "color: red;">Não é permitido a alteração do Nome</div>
+                                    <div class="help-info" style="color: red;">Não é permitido a alteração do Nome</div>
                                 </div>
 
                                 <div class="form-group form-float">
@@ -71,7 +71,7 @@ $dados = $ctrl->DetalharUsuarioCTRL('');
                                         <input type="text" class="form-control" name="CPF" id="CPF" value="<?= $dados[0]['cpf_usuario'] ?>" readonly>
                                         <label class="form-label">CPF</label>
                                     </div>
-                                    <div class="help-info" style = "color: red;">Não é permitido a alteração do CPF</div>
+                                    <div class="help-info" style="color: red;">Não é permitido a alteração do CPF</div>
                                 </div>
 
                                 <div class="form-group form-float">

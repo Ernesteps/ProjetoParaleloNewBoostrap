@@ -12,7 +12,9 @@ $ctrl = new UsuarioCTRL();
 
 if (isset($_POST['btn_gravar'])) {
 
-    if ($_POST['password'] == $_POST['confirmpassword']) {
+    $ret = $ctrl->VerificarSenhaRepetida($_POST['password'], $_POST['confirmpassword']);
+
+    if ($ret != -3) {
 
         $vo = new UsuarioVO();
 
@@ -24,14 +26,12 @@ if (isset($_POST['btn_gravar'])) {
         $vo->setSenha($_POST['confirmpassword']);
 
         $ret = $ctrl->InserirUsuarioCTRL($vo);
-
     } else {
         $nome = $_POST['nome'];
         $cpf = $_POST['CPF'];
         $email = $_POST['email'];
         $telefone = $_POST['telefone'];
         $endereco = $_POST['endereco'];
-        $ret = -3;
     }
 }
 

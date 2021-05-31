@@ -36,8 +36,7 @@ if (isset($_POST['btn_acessar'])) {
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <!-- <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuário" required autofocus> -->
-                            <input type="text" class="form-control" name="CPF" id="CPF" placeholder="CPF" required>
+                            <input type="text" class="form-control" name="CPF" id="CPF" placeholder="CPF" required autofocus>
                         </div>
                     </div>
 
@@ -46,7 +45,6 @@ if (isset($_POST['btn_acessar'])) {
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <!-- <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required> -->
                             <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required>
                         </div>
                     </div>

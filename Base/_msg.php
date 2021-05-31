@@ -6,8 +6,17 @@ if (isset($_GET['ret'])) {
 
 if (isset($ret)) {
     switch ($ret) {
-        case -4:
+
+        case -5:
 ?>
+            <script>
+                swal("Aviso", "A senha digitada está incorreta.", "warning");
+            </script>;
+        <?php
+            break;
+
+        case -4:
+        ?>
             <script>
                 swal("Aviso", "Usuário não encontrado.", "warning");
             </script>;

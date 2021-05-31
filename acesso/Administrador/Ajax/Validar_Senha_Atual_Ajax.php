@@ -11,4 +11,3 @@ if(isset($_POST['senha_atual'])){
         echo -1;
     }
 }
-?>

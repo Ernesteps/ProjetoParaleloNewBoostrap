@@ -6,30 +6,11 @@ require_once '../../VO/OrdemServicoVO.php';
 
 $ctrl_servico = new OrdemServicoCTRL();
 
-if(isset($_POST['btn_excluir'])){
+if (isset($_POST['btn_excluir'])) {
     $vo = new OrdemServicoVO();
-    $cod = $_POST['cod_item'];
-    $vo->setIdServico($cod);
+    $vo->setIdServico($_POST['cod_item']);
     $ret = $ctrl_servico->EncerrarOrdemServicoCTRL($vo);
-
-} else if (isset($_POST['btn_alterar'])){
-    $vo = new OrdemServicoVO();
-
-    $cod = $_POST['cod_alt'];
-    $funcionario = $_POST['funcionario_alt'];
-    $cliente = $_POST['cliente_alt'];
-    $desc_servico = $_POST['desc_servico_alt'];
-    $valor = $_POST['valor_alt'];
-
-    $vo->setIdServico($cod);
-    $vo->setIdFunc($funcionario);
-    $vo->setIdCliente($cliente);
-    $vo->setDescServico($desc_servico);
-    $vo->setValorServico($valor);
-
-    $ret = $ctrl_servico->AlterarOrdemServicoCTRL($vo);
 }
-
 $servicosAnd = $ctrl_servico->PesquisarOrdemServicoAndamentoCTRL();
 $servicosEnc = $ctrl_servico->PesquisarOrdemServicoEncerradoCTRL();
 
@@ -115,9 +96,6 @@ $servicosEnc = $ctrl_servico->PesquisarOrdemServicoEncerradoCTRL();
 
                                     </tbody>
                                 </table>
-                                <form method="post" action="adm_consultarservicos.php">
-                                    <?php include_once '../../Base/_modal_excluir.php'; ?>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -180,11 +158,11 @@ $servicosEnc = $ctrl_servico->PesquisarOrdemServicoEncerradoCTRL();
     </section>
 
 
-    <?php 
+    <?php
     include_once '../../Base/_JQuery.php';
-    include_once '../../Base/_msg.php'; 
+    include_once '../../Base/_msg.php';
     ?>
-    
+
 
 </body>
 

@@ -15,9 +15,7 @@ if (isset($_GET['cod']) && is_numeric($_GET['cod'])) {
         header('location: adm_consultarfuncionarios.php');
         exit;
     }
-}
-
-else if (isset($_POST['btn_gravar'])) {
+} else if (isset($_POST['btn_gravar'])) {
 
     $vo = new FuncionarioVO();
     $ctrl = new FuncionarioCTRL();
@@ -90,7 +88,7 @@ else if (isset($_POST['btn_gravar'])) {
                                         <label class="form-label">CPF</label>
                                     </div>
                                     <div class="help-info">Digite somente os números do CPF</div>
-                                    <label id="val_cpf" style = "color: red; font-size:11px; display: none"></label>
+                                    <label id="val_cpf" style="color: red; font-size:11px; display: none"></label>
                                 </div>
 
                                 <div class="form-group form-float">

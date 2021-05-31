@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoParaleloNewBoostrap/CTRL/UtilC
 $ctrl = new UsuarioCTRL();
 $dadosWelcome = $ctrl->DetalharUsuarioCTRL('');
 
-if(isset($_GET['close']) && $_GET['close'] == 1){
+if (isset($_GET['close']) && $_GET['close'] == 1) {
     UtilCTRL::Deslogar();
 }
 
@@ -15,10 +15,10 @@ if(isset($_GET['close']) && $_GET['close'] == 1){
     <!-- User Info -->
     <div class="user-info">
 
-        <div class="name" style = "color: white; font-size:18px;" data-toggle="" aria-haspopup="true" aria-expanded="false">Bem-Vindo</div>
+        <div class="name" style="color: white; font-size:18px;" data-toggle="" aria-haspopup="true" aria-expanded="false">Bem-Vindo</div>
 
         <div class="info-container">
-            <div class="name" data-toggle="dropdown" style = "color: white; font-size:12px;" aria-haspopup="true" aria-expanded="false"> <?= $dadosWelcome[0]['nome_usuario'] ?></div>
+            <div class="name" data-toggle="dropdown" style="color: white; font-size:12px;" aria-haspopup="true" aria-expanded="false"> <?= $dadosWelcome[0]['nome_usuario'] ?></div>
             <div class="btn-group user-helper-dropdown"></div>
         </div>
 

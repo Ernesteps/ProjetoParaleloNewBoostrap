@@ -11,16 +11,18 @@ define('DB', 'db_projeto_paralelo'); //Banco
  * @copyright (c) year, Wladimir M. Barros
  */
 
-class Conexao {
+class Conexao
+{
 
     /** @var PDO */
     private static $Connect;
 
-    private static function Conectar() {
+    private static function Conectar()
+    {
         try {
 
             //Verifica se a conexão não existe
-            if (self::$Connect == null):
+            if (self::$Connect == null) :
 
                 $dsn = 'mysql:host=' . HOST . ';dbname=' . DB;
                 self::$Connect = new PDO($dsn, USER, PASS, null);
@@ -28,22 +30,24 @@ class Conexao {
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-       
+
         //Seta os atributos para que seja retornado as excessões do banco
-        self::$Connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-       
+        self::$Connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         return  self::$Connect;
     }
 
-    public static function retornaConexao() {
+    public static function retornaConexao()
+    {
         return  self::Conectar();
     }
 
-    public static function GravarErro($msg, $iduser, $funcao){
+    public static function GravarErro($msg, $iduser, $funcao)
+    {
         $quebra = chr(13) . chr(10);
         $arquivo = $_SERVER['DOCUMENT_ROOT'] . '/ProjetoParaleloNewBoostrap/DAO/Erro/Erro.txt';
 
-        if(!file_exists($arquivo)){
+        if (!file_exists($arquivo)) {
             $arquivo = fopen($arquivo, 'w');
         } else {
             $arquivo = fopen($arquivo, 'a+');

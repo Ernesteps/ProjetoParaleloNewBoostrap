@@ -6,18 +6,16 @@ require_once '../../CTRL/UtilCTRL.php';
 
 $cod = '';
 
-if(isset($_GET['cod']) && is_numeric($_GET['cod'])){
+if (isset($_GET['cod']) && is_numeric($_GET['cod'])) {
     $ctrl = new ClienteCTRL();
     $cod = $_GET['cod'];
     $dados = $ctrl->DetalharCliente($cod);
 
-    if(count($dados)==0){
+    if (count($dados) == 0) {
         header('location: adm_consultarclientes.php');
         exit;
     }
-}
-
-else if (isset($_POST['btn_gravar'])) {
+} else if (isset($_POST['btn_gravar'])) {
 
     $vo = new ClienteVO();
     $ctrl = new ClienteCTRL();
@@ -31,7 +29,7 @@ else if (isset($_POST['btn_gravar'])) {
     $vo->setTelCliente($_POST['telefone']);
     $vo->setEnderecoCliente($_POST['endereco']);
 
-    if($cod ==''){
+    if ($cod == '') {
         $ret = $ctrl->InserirCadastroClienteCTRL($vo);
     } else {
         $ret = $ctrl->AlterarCadastroClienteCTRL($vo);
@@ -74,7 +72,7 @@ else if (isset($_POST['btn_gravar'])) {
                         <div class="body">
 
                             <form id="form_advanced_validation" method="post" action="adm_cliente.php">
-                            <input type="hidden" name="cod" id="cod" value="<?= $cod ?>">
+                                <input type="hidden" name="cod" id="cod" value="<?= $cod ?>">
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
@@ -90,7 +88,7 @@ else if (isset($_POST['btn_gravar'])) {
                                         <label class="form-label">CPF</label>
                                     </div>
                                     <div class="help-info">Digite somente os números do CPF</div>
-                                    <label id="val_cpf" style = "color: red; font-size:11px; display: none"></label>
+                                    <label id="val_cpf" style="color: red; font-size:11px; display: none"></label>
                                 </div>
 
                                 <div class="form-group form-float">

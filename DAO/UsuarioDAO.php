@@ -114,7 +114,7 @@ class UsuarioDAO extends Conexao
                             where id_usuario = ?';
         $this->sql = $this->conexao->prepare($comando_sql);
 
-        $i=1;
+        $i = 1;
         $this->sql->bindValue($i++, $idUser);
         $this->sql->setFetchMode(PDO::FETCH_ASSOC);
         $this->sql->execute();
@@ -129,7 +129,7 @@ class UsuarioDAO extends Conexao
                             where id_usuario = ?';
         $this->sql = $this->conexao->prepare($comando_sql);
 
-        $i=1;
+        $i = 1;
         $this->sql->bindValue($i++, $senha);
         $this->sql->bindValue($i++, $idUser);
 

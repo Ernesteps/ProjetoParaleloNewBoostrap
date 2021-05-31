@@ -11,22 +11,19 @@ $cod = '';
 $funcionario = '';
 $cliente = '';
 
-if(isset($_GET['cod']) && is_numeric($_GET['cod'])){
+if (isset($_GET['cod']) && is_numeric($_GET['cod'])) {
     $ctrl = new OrdemServicoCTRL();
     $cod = $_GET['cod'];
     $dados = $ctrl->DetalharOrdemServicoCTRL($cod);
 
-    if(count($dados) == 0){
+    if (count($dados) == 0) {
         header('location: adm_consultarservicos.php');
         exit;
-    } else{
+    } else {
         $funcionario = $dados[0]['id_func'];
         $cliente = $dados[0]['id_cliente'];
     }
-
-}
-
-else if (isset($_POST['btn_gravar'])) {
+} else if (isset($_POST['btn_gravar'])) {
 
     $vo = new OrdemServicoVO();
     $ctrl = new OrdemServicoCTRL();
@@ -39,14 +36,12 @@ else if (isset($_POST['btn_gravar'])) {
     $vo->setDescServico($_POST['descricao']);
     $vo->setValorServico($_POST['valor']);
 
-    if($cod == ''){
+    if ($cod == '') {
         $ret = $ctrl->InserirOrdemServicoCTRL($vo);
     } else {
         $ret = $ctrl->AlterarOrdemServicoCTRL($vo);
         header('location: adm_servico.php?cod=' . $cod . '&ret=' . $ret);
     }
-
-    
 }
 
 $clientes = $ctrl_cliente->ConsultarClienteCTRL();
@@ -78,7 +73,7 @@ $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
             <div class="block-header">
                 <h2>
                     <?= $cod == '' ? 'Novo' : 'Alterar' ?> Ordem de Serviço
-                    <small>Aqui você <?= $cod== '' ? 'cadastra' : 'altere' ?> um novo ordem de serviço</a></small>
+                    <small>Aqui você <?= $cod == '' ? 'cadastra' : 'altere' ?> um novo ordem de serviço</a></small>
                 </h2>
             </div>
 
@@ -119,7 +114,7 @@ $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <div class="form-line form-float">
-                                                <textarea rows="1" type="Text" class="form-control no-resize auto-growth" placeholder="Digite ordem de serviço a ser feito..." name="descricao" id="descricao"required><?= isset($dados) ? $dados[0]['desc_servico'] : '' ?></textarea>
+                                                <textarea rows="1" type="Text" class="form-control no-resize auto-growth" placeholder="Digite ordem de serviço a ser feito..." name="descricao" id="descricao" required><?= isset($dados) ? $dados[0]['desc_servico'] : '' ?></textarea>
                                             </div>
                                             <div class="help-info">Descrição da Ordem de Serviço.</div>
                                         </div>

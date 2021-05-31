@@ -27,22 +27,26 @@ class ClienteCTRL
         return $dao->AlterarClienteDAO($vo, UtilCTRL::CodigoUserLogado());
     }
 
-    public function ConsultarClienteCTRL(){
+    public function ConsultarClienteCTRL()
+    {
         $dao = new ClienteDAO();
         return $dao->ConsultarClienteDAO();
     }
 
-    public function DetalharCliente($idCliente){
+    public function DetalharCliente($idCliente)
+    {
         $dao = new ClienteDAO();
         return $dao->DetalharCliente($idCliente);
     }
 
-    public function ExcluirClienteCTRL($idCliente){
+    public function ExcluirClienteCTRL($idCliente)
+    {
         $dao = new ClienteDAO();
         return $dao->ExcluirClienteDAO($idCliente, UtilCTRL::CodigoUserLogado());
     }
 
-    public function VerificarCPFCadastroClienteCTRL($cpf){
+    public function VerificarCPFCadastroClienteCTRL($cpf)
+    {
         $dao = new ClienteDAO();
         return $dao->VerificarCPFCadastroClienteDAO($cpf);
     }

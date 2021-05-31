@@ -7,29 +7,8 @@ require_once '../../CTRL/UtilCTRL.php';
 $ctrl_cliente = new ClienteCTRL();
 
 if (isset($_POST['btn_excluir'])) {
-    $cod = $_POST['cod_item'];
-    $ret = $ctrl_cliente->ExcluirClienteCTRL($cod);
-
-}else if (isset($_POST['btn_alterar'])) {
-
-    $vo = new ClienteVO();
-    $nome = $_POST['nome_alt'];
-    $cpf = $_POST['cpf_alt']; 
-    $email = $_POST['email_alt'];
-    $telefone = $_POST['telefone_alt'];
-    $endereco = $_POST['endereco_alt'];
-    $cod = $_POST['cod_alt'];
-    
-    $vo->setNomeCliente($nome);
-    $vo->setCPFCliente($cpf);
-    $vo->setEmailCliente($email);
-    $vo->setTelCliente($telefone);
-    $vo->setEnderecoCliente($endereco);
-    $vo->setIdUser_cliente($cod);
-  
-    $ret = $ctrl_cliente->AlterarCadastroClienteCTRL($vo);
-  }
-
+    $ret = $ctrl_cliente->ExcluirClienteCTRL($_POST['cod_item']);
+}
 $clientes = $ctrl_cliente->ConsultarClienteCTRL();
 
 ?>
@@ -112,9 +91,6 @@ $clientes = $ctrl_cliente->ConsultarClienteCTRL();
                                         <?php } ?>
                                     </tbody>
                                 </table>
-                                <form method="post" action="adm_consultarclientes.php">
-                                    <?php include_once '../../Base/_modal_excluir.php'; ?>
-                                </form>
                             </div>
                         </div>
                     </div>

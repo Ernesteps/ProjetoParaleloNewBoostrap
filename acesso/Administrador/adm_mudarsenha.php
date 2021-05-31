@@ -46,16 +46,16 @@ $dados = $ctrl->DetalharUsuarioCTRL('');
 
                             <form id="form_advanced_validation" method="post" action="adm_mudarsenha.php">
 
-                            <div id="SenhaAtual" name="SenhaAtual">
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="password" class="form-control" name="Senha_atual" id="Senha_atual" oninput="ValidarSenhaAtual(document.getElementById('Senha_atual').value)" required>
-                                        <label class="form-label">Senha atual</label>
+                                <div id="SenhaAtual" name="SenhaAtual">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input type="password" class="form-control" name="Senha_atual" id="Senha_atual" oninput="ValidarSenhaAtual(document.getElementById('Senha_atual').value)" required>
+                                            <label class="form-label">Senha atual</label>
+                                        </div>
+                                        <div class="help-info">Digite a senha atual. A cada digito será verificado a senha.</div>
+                                        <label id="val_senha_atual" style="color: red; font-size:11px; display: none"></label>
                                     </div>
-                                    <div class="help-info">Digite a senha atual. A cada digito será verificado a senha.</div>
-                                    <label id="val_senha_atual" style = "color: red; font-size:11px; display: none"></label>
                                 </div>
-                            </div>
 
                                 <div id="SenhaPreenchida" name="SenhaPreenchida" style="display: none;">
                                     <div class="form-group form-float">
