@@ -31,6 +31,7 @@ if (isset($_POST['btn_acessar'])) {
 
                 <form id="sign_in" method="POST" action="adm_signin.php">
                     <div class="msg">Entre para começar sua sessão</div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>

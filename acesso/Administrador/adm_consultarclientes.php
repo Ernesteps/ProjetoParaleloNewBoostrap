@@ -5,10 +5,6 @@ require_once '../../VO/ClienteVO.php';
 require_once '../../CTRL/UtilCTRL.php';
 
 $ctrl_cliente = new ClienteCTRL();
-
-if (isset($_POST['btn_excluir'])) {
-    $ret = $ctrl_cliente->ExcluirClienteCTRL($_POST['cod_item']);
-}
 $clientes = $ctrl_cliente->ConsultarClienteCTRL();
 
 ?>
@@ -83,7 +79,7 @@ $clientes = $ctrl_cliente->ConsultarClienteCTRL();
                                                     <div class="row js-modal-buttons demo-button-sizes">
                                                         <div class="align-center">
                                                             <a href="adm_cliente.php?cod=<?= $clientes[$i]['id_cliente'] ?>" data-color="orange" class="btn bg-orange waves-effect">Alterar</a>
-                                                            <button type="button" class="btn bg-red waves-effect" onclick="ExclusaoCliente('<?= $clientes[$i]['id_cliente'] ?>','<?= $clientes[$i]['nome_cliente'] ?>')">Excluir</button>
+                                                            <button type="button" class="btn bg-red waves-effect" onclick="ExcluirCliente('<?= $clientes[$i]['id_cliente'] ?>','<?= $clientes[$i]['nome_cliente'] ?>')">Excluir</button>
                                                         </div>
                                                     </div>
                                                 </td>

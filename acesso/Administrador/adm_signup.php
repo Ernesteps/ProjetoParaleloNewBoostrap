@@ -53,6 +53,7 @@ if (isset($_POST['btn_gravar'])) {
             <div class="body">
                 <form id="sign_up" method="POST" action="adm_signup.php">
                     <div class="msg">Registrar um novo Administrador</div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
@@ -61,6 +62,7 @@ if (isset($_POST['btn_gravar'])) {
                             <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" value="<?php echo $nome; ?>" required autofocus>
                         </div>
                     </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">contacts</i>
@@ -69,6 +71,7 @@ if (isset($_POST['btn_gravar'])) {
                             <input class="form-control" name="CPF" id="CPF" placeholder="CPF" maxlength="11" value="<?php echo $cpf; ?>" required>
                         </div>
                     </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">email</i>
@@ -77,6 +80,7 @@ if (isset($_POST['btn_gravar'])) {
                             <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" required>
                         </div>
                     </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">call</i>
@@ -85,6 +89,7 @@ if (isset($_POST['btn_gravar'])) {
                             <input class="form-control" name="telefone" id="telefone" placeholder="Telefone" value="<?php echo $telefone; ?>" required>
                         </div>
                     </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">business</i>
@@ -93,6 +98,7 @@ if (isset($_POST['btn_gravar'])) {
                             <input class="form-control" name="endereco" id="endereco" placeholder="Endereço" value="<?php echo $endereco; ?>" required>
                         </div>
                     </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
@@ -101,6 +107,7 @@ if (isset($_POST['btn_gravar'])) {
                             <input type="password" class="form-control" name="password" id="password" minlength="6" placeholder="Senha" required>
                         </div>
                     </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>

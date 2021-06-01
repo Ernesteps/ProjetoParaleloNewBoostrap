@@ -5,10 +5,6 @@ require_once '../../VO/FuncionarioVO.php';
 require_once '../../CTRL/UtilCTRL.php';
 
 $ctrl_funcionario = new FuncionarioCTRL();
-
-if (isset($_POST['btn_excluir'])) {
-    $ret = $ctrl_funcionario->ExcluirFuncionarioCTRL($_POST['cod_item']);
-}
 $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
 
 ?>
@@ -83,7 +79,7 @@ $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
                                                     <div class="row js-modal-buttons demo-button-sizes">
                                                         <div class="align-center">
                                                             <a href="adm_funcionario.php?cod=<?= $funcionarios[$i]['id_func'] ?>" data-color="orange" class="btn bg-orange waves-effect">Alterar</a>
-                                                            <button type="button" class="btn bg-red waves-effect" onclick="ExclusaoFuncionario('<?= $funcionarios[$i]['id_func'] ?>','<?= $funcionarios[$i]['nome_func'] ?>')">Excluir</button>
+                                                            <button type="button" class="btn bg-red waves-effect" onclick="ExcluirFuncionario('<?= $funcionarios[$i]['id_func'] ?>','<?= $funcionarios[$i]['nome_func'] ?>')">Excluir</button>
                                                         </div>
                                                     </div>
                                                 </td>

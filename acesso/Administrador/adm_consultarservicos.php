@@ -5,12 +5,6 @@ require_once '../../CTRL/OrdemServicoCTRL.php';
 require_once '../../VO/OrdemServicoVO.php';
 
 $ctrl_servico = new OrdemServicoCTRL();
-
-if (isset($_POST['btn_excluir'])) {
-    $vo = new OrdemServicoVO();
-    $vo->setIdServico($_POST['cod_item']);
-    $ret = $ctrl_servico->EncerrarOrdemServicoCTRL($vo);
-}
 $servicosAnd = $ctrl_servico->PesquisarOrdemServicoAndamentoCTRL();
 $servicosEnc = $ctrl_servico->PesquisarOrdemServicoEncerradoCTRL();
 
@@ -87,7 +81,7 @@ $servicosEnc = $ctrl_servico->PesquisarOrdemServicoEncerradoCTRL();
                                                     <div class="row">
                                                         <div class="align-center">
                                                             <a href="adm_servico.php?cod=<?= $servicosAnd[$i]['id_ordem_servico'] ?>" data-color="orange" class="btn bg-orange waves-effect">Alterar</a>
-                                                            <button type="button" class="btn bg-red waves-effect" onclick="ExclusaoOrdemServico('<?= $servicosAnd[$i]['id_ordem_servico'] ?>','<?= $servicosAnd[$i]['desc_servico'] ?>','<?= $servicosAnd[$i]['data_servico'] ?>')">Encerrar</button>
+                                                            <button type="button" class="btn bg-red waves-effect" onclick="ExcluirOrdemServico('<?= $servicosAnd[$i]['id_ordem_servico'] ?>','<?= $servicosAnd[$i]['desc_servico'] ?>','<?= $servicosAnd[$i]['data_servico'] ?>')">Encerrar</button>
                                                         </div>
                                                     </div>
                                                 </td>

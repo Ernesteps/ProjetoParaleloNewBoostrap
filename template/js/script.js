@@ -77,96 +77,22 @@ function MensagemErroSemFunction() {
     swal("Erro!", "Ops, algo deu errado.", "error");
 }
 
-function ExclusaoFuncionario(id, nome) {
-    swal({
-        title: "Tem Certeza?",
-        text: "Você está prestes a deletar a entidade: " + nome,
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Sim",
-        closeOnConfirm: false
-    }, function () {
-        $.post("Ajax/Funcionario_Ajax.php", {
-            id_func: id,
-            acao: 'R'
+function AtualizarUsuario() {
 
-        }, function (retorno_chamada) {
+    var email = $("#email").val().trim();
+    var telefone = $("#telefone").val().trim();
+    var endereco = $("#endereco").val().trim();
 
-            if (retorno_chamada == -2) {
-                MensagemAlertaSemFunction();
-            }
-
-            else if (retorno_chamada == -1) {
-                MensagemErroComFunctionRefreshPage();
-            }
-
-            else {
-                MensagemSucessoComFunctionRefreshPage();
-            }
-        });
-    });
-    return false;
-}
-
-function ExclusaoCliente(id, nome) {
-    swal({
-        title: "Tem Certeza?",
-        text: "Você está prestes a deletar a entidade: " + nome,
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Sim",
-        closeOnConfirm: false
-    }, function () {
-        $.post("Ajax/Cliente_Ajax.php", {
-            id_cliente: id,
-            acao: 'R'
-
-        }, function (retorno_chamada) {
-
-            if (retorno_chamada == -2) {
-                MensagemAlertaSemFunction();
-            }
-
-            else if (retorno_chamada == -1) {
-                MensagemErroComFunctionRefreshPage();
-            }
-
-            else {
-                MensagemSucessoComFunctionRefreshPage();
-            }
-
-        });
-    });
-    return false;
-}
-
-function ExclusaoOrdemServico(id, nome, data) {
-    swal({
-        title: "Tem Certeza?",
-        text: "Você está prestes a encerrar Ordem de Serviço: " + nome + ", da data referente a: " + data,
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Sim",
-        closeOnConfirm: false
-    }, function () {
-        $.post("Ajax/Ordem_servico_Ajax.php", {
-            id_servico: id,
+    $.post("Ajax/Usuario_Ajax.php",
+        {
+            email_adm: email,
+            tel_adm: telefone,
+            endereco_adm: endereco,
             acao: 'A'
-
         }, function (retorno_chamada) {
-
-            if (retorno_chamada == -1) {
-                MensagemErroComFunctionRefreshPage();
-            }
-
-            else {
-                MensagemSucessoComFunctionRefreshPage();
-            }
+            if (retorno_chamada == 1) { MensagemSucessoSemFunction(); }
+            else { MensagemErroSemFunction(); }
         });
-    });
     return false;
 }
 
@@ -249,13 +175,15 @@ function InserirCliente() {
             end_cliente: endereco,
             acao: 'I'
         }, function (retorno_chamada) {
-            $("#nome").val('');
-            $("#CPF").val('');
-            $("#email").val('');
-            $("#telefone").val('');
-            $("#endereco").val('');
 
-            if (retorno_chamada == 1) { MensagemSucessoSemFunction(); }
+            if (retorno_chamada == 1) {
+                $("#nome").val('');
+                $("#CPF").val('');
+                $("#email").val('');
+                $("#telefone").val('');
+                $("#endereco").val('');
+                MensagemSucessoSemFunction();
+            }
             else { MensagemErroSemFunction(); }
         });
     return false;
@@ -286,22 +214,36 @@ function AlterarCliente($tipo) {
     return false;
 }
 
-function AtualizarUsuario() {
+function ExcluirCliente(id, nome) {
+    swal({
+        title: "Tem Certeza?",
+        text: "Você está prestes a deletar a entidade: " + nome,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Sim",
+        closeOnConfirm: false
+    }, function () {
+        $.post("Ajax/Cliente_Ajax.php", {
+            id_cliente: id,
+            acao: 'R'
 
-    var email = $("#email").val().trim();
-    var telefone = $("#telefone").val().trim();
-    var endereco = $("#endereco").val().trim();
-
-    $.post("Ajax/Usuario_Ajax.php",
-        {
-            email_adm: email,
-            tel_adm: telefone,
-            endereco_adm: endereco,
-            acao: 'A'
         }, function (retorno_chamada) {
-            if (retorno_chamada == 1) { MensagemSucessoSemFunction(); }
-            else { MensagemErroSemFunction(); }
+
+            if (retorno_chamada == -2) {
+                MensagemAlertaSemFunction();
+            }
+
+            else if (retorno_chamada == -1) {
+                MensagemErroComFunctionRefreshPage();
+            }
+
+            else {
+                MensagemSucessoComFunctionRefreshPage();
+            }
+
         });
+    });
     return false;
 }
 
@@ -322,13 +264,15 @@ function InserirFuncionario() {
             end_func: endereco,
             acao: 'I'
         }, function (retorno_chamada) {
-            $("#nome").val('');
-            $("#CPF").val('');
-            $("#email").val('');
-            $("#telefone").val('');
-            $("#endereco").val('');
 
-            if (retorno_chamada == 1) { MensagemSucessoSemFunction(); }
+            if (retorno_chamada == 1) {
+                $("#nome").val('');
+                $("#CPF").val('');
+                $("#email").val('');
+                $("#telefone").val('');
+                $("#endereco").val('');
+                MensagemSucessoSemFunction();
+            }
             else { MensagemErroSemFunction(); }
         });
     return false;
@@ -359,6 +303,38 @@ function AlterarFuncionario($tipo) {
     return false;
 }
 
+function ExcluirFuncionario(id, nome) {
+    swal({
+        title: "Tem Certeza?",
+        text: "Você está prestes a deletar a entidade: " + nome,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Sim",
+        closeOnConfirm: false
+    }, function () {
+        $.post("Ajax/Funcionario_Ajax.php", {
+            id_func: id,
+            acao: 'R'
+
+        }, function (retorno_chamada) {
+
+            if (retorno_chamada == -2) {
+                MensagemAlertaSemFunction();
+            }
+
+            else if (retorno_chamada == -1) {
+                MensagemErroComFunctionRefreshPage();
+            }
+
+            else {
+                MensagemSucessoComFunctionRefreshPage();
+            }
+        });
+    });
+    return false;
+}
+
 function InserirOrdemServico() {
 
     var funcionario = $("#funcionario").val().trim();
@@ -374,11 +350,11 @@ function InserirOrdemServico() {
             valor_servico: valor,
             acao: 'I'
         }, function (retorno_chamada) {
-
-            $("#descricao").val('');
-            $("#valor").val('');
-
-            if (retorno_chamada == 1) { MensagemSucessoSemFunction(); }
+            if (retorno_chamada == 1) {
+                $("#descricao").val('');
+                $("#valor").val('');
+                MensagemSucessoSemFunction();
+            }
             else { MensagemErroSemFunction(); }
         });
     return false;
@@ -404,5 +380,33 @@ function AlterarOrdemServico($tipo) {
             if (retorno_chamada == 1) { MensagemSucessoComMudancadePagina($tipo); }
             else { MensagemErroSemFunction(); }
         });
+    return false;
+}
+
+function ExcluirOrdemServico(id, nome, data) {
+    swal({
+        title: "Tem Certeza?",
+        text: "Você está prestes a encerrar Ordem de Serviço: " + nome + ", da data referente a: " + data,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Sim",
+        closeOnConfirm: false
+    }, function () {
+        $.post("Ajax/Ordem_servico_Ajax.php", {
+            id_servico: id,
+            acao: 'A'
+
+        }, function (retorno_chamada) {
+
+            if (retorno_chamada == -1) {
+                MensagemErroComFunctionRefreshPage();
+            }
+
+            else {
+                MensagemSucessoComFunctionRefreshPage();
+            }
+        });
+    });
     return false;
 }

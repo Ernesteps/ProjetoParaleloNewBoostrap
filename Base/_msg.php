@@ -26,7 +26,7 @@ if (isset($ret)) {
         case -3:
         ?>
             <script>
-                swal("Aviso", "As senhas digitadas não coincidem.", "warning");
+                swal("Aviso!", "As senhas digitadas não coincidem.", "warning");
             </script>;
         <?php
             break;
@@ -34,7 +34,7 @@ if (isset($ret)) {
         case -2:
         ?>
             <script>
-                swal("Aviso", "Essa entidade está sendo usado.", "warning");
+                swal("Aviso!", "Essa entidade está sendo usado.", "warning");
             </script>;
         <?php
             break;
@@ -42,7 +42,15 @@ if (isset($ret)) {
         case -1:
         ?>
             <script>
-                swal("Erro", "Ops, algo deu de errado.", "error");
+                swal("Erro!", "Ops, algo deu de errado.", "error");
+            </script>;
+        <?php
+            break;
+
+        case 0:
+        ?>
+            <script>
+                swal("Aviso!", "Há campo sem preenchimento.", "warning");
             </script>;
         <?php
             break;
@@ -50,7 +58,7 @@ if (isset($ret)) {
         case 1:
         ?>
             <script>
-                swal("Sucesso", "Operação realizada.", "success");
+                swal("Sucesso!", "Operação realizada.", "success");
             </script>;
         <?php
             break;
