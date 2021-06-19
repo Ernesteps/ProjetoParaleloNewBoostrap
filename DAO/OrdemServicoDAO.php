@@ -96,7 +96,7 @@ class OrdemServicoDAO extends Conexao
     {
         $comando_sql = 'select
                             serv.id_ordem_servico,
-                            serv.data_servico,
+                            date_format(serv.data_servico, "%d/%m/%Y") as data_servico,
                             serv.desc_servico,
                             serv.valor_servico,
                             cli.nome_cliente,
@@ -118,7 +118,7 @@ class OrdemServicoDAO extends Conexao
     {
         $comando_sql = 'select
                             serv.id_ordem_servico,
-                            serv.data_servico,
+                            date_format(serv.data_servico, "%d/%m/%Y") as data_servico,
                             serv.desc_servico,
                             serv.valor_servico,
                             serv.data_remover,
