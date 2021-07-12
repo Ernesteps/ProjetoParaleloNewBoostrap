@@ -71,9 +71,9 @@ $clientes = $ctrl_cliente->ConsultarClienteCTRL();
                                         <?php for ($i = 0; $i < count($clientes); $i++) { ?>
                                             <tr>
                                                 <td><?= $clientes[$i]['nome_cliente'] ?></td>
-                                                <td><?= $clientes[$i]['cpf_cliente'] ?></td>
+                                                <td class="num cpf"><?= $clientes[$i]['cpf_cliente'] ?></td>
                                                 <td><?= $clientes[$i]['email_cliente'] ?></td>
-                                                <td><?= $clientes[$i]['tel_cliente'] ?></td>
+                                                <td class="num cel"><?= $clientes[$i]['tel_cliente'] ?></td>
                                                 <td><?= $clientes[$i]['end_cliente'] ?></td>
                                                 <td>
                                                     <div class="row js-modal-buttons demo-button-sizes">

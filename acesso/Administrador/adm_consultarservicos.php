@@ -76,7 +76,7 @@ $servicosEnc = $ctrl_servico->PesquisarOrdemServicoEncerradoCTRL();
                                                 <td><?= $servicosAnd[$i]['nome_func'] ?></td>
                                                 <td><?= $servicosAnd[$i]['nome_cliente'] ?></td>
                                                 <td><?= $servicosAnd[$i]['desc_servico'] ?></td>
-                                                <td>R$: <?= $servicosAnd[$i]['valor_servico'] ?></td>
+                                                <td class="num dinheiro">R$: <?= $servicosAnd[$i]['valor_servico'] ?></td>
                                                 <td>
                                                     <div class="row">
                                                         <div class="align-center">
@@ -135,7 +135,7 @@ $servicosEnc = $ctrl_servico->PesquisarOrdemServicoEncerradoCTRL();
                                                 <td><?= $servicosEnc[$i]['nome_func'] ?></td>
                                                 <td><?= $servicosEnc[$i]['nome_cliente'] ?></td>
                                                 <td><?= $servicosEnc[$i]['desc_servico'] ?></td>
-                                                <td>R$: <?= $servicosEnc[$i]['valor_servico'] ?></td>
+                                                <td class="num dinheiro">R$: <?= $servicosEnc[$i]['valor_servico'] ?></td>
                                                 <td><?= $servicosEnc[$i]['data_remover'] ?></td>
                                             </tr>
                                         <?php } ?>

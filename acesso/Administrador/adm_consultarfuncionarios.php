@@ -71,9 +71,9 @@ $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
                                         <?php for ($i = 0; $i < count($funcionarios); $i++) { ?>
                                             <tr>
                                                 <td><?= $funcionarios[$i]['nome_func'] ?></td>
-                                                <td><?= $funcionarios[$i]['cpf_func'] ?></td>
+                                                <td class="num cpf"><?= $funcionarios[$i]['cpf_func'] ?></td>
                                                 <td><?= $funcionarios[$i]['email_func'] ?></td>
-                                                <td><?= $funcionarios[$i]['tel_func'] ?></td>
+                                                <td class="num cel"><?= $funcionarios[$i]['tel_func'] ?></td>
                                                 <td><?= $funcionarios[$i]['endereco_func'] ?></td>
                                                 <td>
                                                     <div class="row js-modal-buttons demo-button-sizes">
