@@ -11,6 +11,8 @@ class ClienteCTRL
         if ($vo->getNomeCliente() == '' || $vo->getCPFCliente() == '' || $vo->getEmailCliente() == '' || $vo->getTelCliente() == '' || $vo->getEnderecoCliente() == '') {
             return 0;
         }
+        $vo->setCPFCliente(UtilCTRL::TirarCaracteresEspeciais($vo->getCPFCliente()));
+        $vo->setTelCliente(UtilCTRL::TirarCaracteresEspeciais($vo->getTelCliente()));
         $vo->setIduser(UtilCTRL::CodigoUserLogado());
 
         $dao = new ClienteDAO();
@@ -22,6 +24,8 @@ class ClienteCTRL
         if ($vo->getNomeCliente() == '' || $vo->getCPFCliente() == '' || $vo->getEmailCliente() == '' || $vo->getTelCliente() == '' || $vo->getEnderecoCliente() == '') {
             return 0;
         }
+        $vo->setCPFCliente(UtilCTRL::TirarCaracteresEspeciais($vo->getCPFCliente()));
+        $vo->setTelCliente(UtilCTRL::TirarCaracteresEspeciais($vo->getTelCliente()));
 
         $dao = new ClienteDAO();
         return $dao->AlterarClienteDAO($vo, UtilCTRL::CodigoUserLogado());
@@ -47,6 +51,8 @@ class ClienteCTRL
 
     public function VerificarCPFCadastroClienteCTRL($cpf)
     {
+        $cpf = UtilCTRL::TirarCaracteresEspeciais($cpf);
+
         $dao = new ClienteDAO();
         return $dao->VerificarCPFCadastroClienteDAO($cpf);
     }

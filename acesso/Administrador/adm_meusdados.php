@@ -68,7 +68,7 @@ $dados = $ctrl->DetalharUsuarioCTRL('');
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="CPF" id="CPF" value="<?= $dados[0]['cpf_usuario'] ?>" readonly>
+                                        <input type="text" class="form-control num cpf" name="CPF" id="CPF" value="<?= $dados[0]['cpf_usuario'] ?>" readonly>
                                         <label class="form-label">CPF</label>
                                     </div>
                                     <div class="help-info" style="color: red;">Não é permitido a alteração do CPF</div>
@@ -84,7 +84,7 @@ $dados = $ctrl->DetalharUsuarioCTRL('');
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="telefone" id="telefone" value="<?= $dados[0]['tel_usuario'] ?>" required>
+                                        <input type="text" class="form-control num cel" name="telefone" id="telefone" value="<?= $dados[0]['tel_usuario'] ?>" required>
                                         <label class="form-label">Telefone</label>
                                     </div>
                                     <div class="help-info">Digite o número do Telefone</div>

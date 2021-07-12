@@ -71,13 +71,13 @@ class UsuarioDAO extends Conexao
 
     public function DetalharUsuarioDAO($idUser)
     {
-        $comando_sql = 'select id_usuario, 
-                               nome_usuario, 
-                               cpf_usuario, 
-                               email_usuario, 
-                               tel_usuario, 
-                               endereco_usuario, 
-                               senha_usuario 
+        $comando_sql = 'select  id_usuario, 
+                                nome_usuario, 
+                                cpf_usuario, 
+                                email_usuario, 
+                                tel_usuario, 
+                                endereco_usuario, 
+                                senha_usuario 
                             from tb_usuario 
                             where id_usuario = ?';
         $this->sql = $this->conexao->prepare($comando_sql);
@@ -92,9 +92,9 @@ class UsuarioDAO extends Conexao
 
     public function ValidarLoginDAO($cpf)
     {
-        $comando_sql = 'select id_usuario,
-                               nome_usuario,
-                               senha_usuario
+        $comando_sql = 'select  id_usuario,
+                                nome_usuario,
+                                senha_usuario
                             from tb_usuario
                             where cpf_usuario = ?';
         $this->sql = $this->conexao->prepare($comando_sql);
@@ -109,7 +109,7 @@ class UsuarioDAO extends Conexao
 
     public function RecuperarSenhaAtualDAO($idUser)
     {
-        $comando_sql = 'select senha_usuario
+        $comando_sql = 'select  senha_usuario
                             from tb_usuario
                             where id_usuario = ?';
         $this->sql = $this->conexao->prepare($comando_sql);
@@ -124,7 +124,7 @@ class UsuarioDAO extends Conexao
 
     public function AlterarSenhaDAO($idUser, $senha)
     {
-        $comando_sql = 'update tb_usuario
+        $comando_sql = 'update  tb_usuario
                             set senha_usuario = ?
                             where id_usuario = ?';
         $this->sql = $this->conexao->prepare($comando_sql);

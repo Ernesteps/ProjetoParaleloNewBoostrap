@@ -75,15 +75,14 @@ class FuncionarioDAO extends Conexao
 
     public function DetalharFuncionario($idFuncionario)
     {
-        $comando_sql = 'select
-                            func.id_func,
-                            func.nome_func,
-                            func.cpf_func,
-                            func.email_func,
-                            func.tel_func,
-                            func.endereco_func
-                        from tb_funcionario as func
-                        where func.id_func = ?';
+        $comando_sql = 'select  func.id_func,
+                                func.nome_func,
+                                func.cpf_func,
+                                func.email_func,
+                                func.tel_func,
+                                func.endereco_func
+                            from tb_funcionario as func
+                            where func.id_func = ?';
         $this->sql = $this->conexao->prepare($comando_sql);
 
         $i = 1;
@@ -111,15 +110,14 @@ class FuncionarioDAO extends Conexao
 
     public function ConsultarFuncionarioDAO()
     {
-        $comando_sql = 'select 
-                            id_func, 
-                            nome_func, 
-                            cpf_func, 
-                            email_func, 
-                            tel_func, 
-                            endereco_func 
-                        from tb_funcionario 
-                        order by nome_func';
+        $comando_sql = 'select  id_func, 
+                                nome_func, 
+                                cpf_func, 
+                                email_func, 
+                                tel_func, 
+                                endereco_func 
+                            from tb_funcionario 
+                            order by nome_func';
         $this->sql = $this->conexao->prepare($comando_sql);
         $this->sql->setFetchMode(PDO::FETCH_ASSOC);
         $this->sql->execute();

@@ -101,13 +101,26 @@ $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
 
                                     <div class="col-xs-6">
                                         <div class="form-group form-float ">
-                                            <select class="form-control show-tick" name="cliente" id="cliente" required>
-                                                <option value="">Por favor, selecione o cliente cadastrado.</option>
-                                                <?php for ($i = 0; $i < count($clientes); $i++) { ?>
-                                                    <option value="<?= $clientes[$i]['id_cliente'] ?>" <?= $clientes[$i]['id_cliente'] == $cliente ? 'selected' : '' ?>><?= $clientes[$i]['nome_cliente'] ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <div class="help-info">Selecionar o Nome do Cliente.</div>
+
+                                            <?php if ($cod == null) { ?>
+                                                <select class="form-control show-tick" name="cliente" id="cliente" required>
+                                                    <option value="">Por favor, selecione o cliente cadastrado.</option>
+                                                    <?php for ($i = 0; $i < count($clientes); $i++) { ?>
+                                                        <option value="<?= $clientes[$i]['id_cliente'] ?>" <?= $clientes[$i]['id_cliente'] == $cliente ? 'selected' : '' ?>><?= $clientes[$i]['nome_cliente'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="help-info">Selecionar o Nome do Cliente.</div>
+
+                                            <?php } else { ?>
+                                                <select class="form-control show-tick" name="cliente" id="cliente" disabled required>
+                                                    <option value="">Por favor, selecione o cliente cadastrado.</option>
+                                                    <?php for ($i = 0; $i < count($clientes); $i++) { ?>
+                                                        <option value="<?= $clientes[$i]['id_cliente'] ?>" <?= $clientes[$i]['id_cliente'] == $cliente ? 'selected' : '' ?>><?= $clientes[$i]['nome_cliente'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="help-info" style="color: red;">Não é permitido a alteração do Cliente.</div>
+                                            <?php } ?>
+                                            
                                         </div>
                                     </div>
 
@@ -123,7 +136,7 @@ $funcionarios = $ctrl_funcionario->ConsultarFuncionarioCTRL();
                                     <div class="col-xs-2">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="valor" id="valor" value="<?= isset($dados) ? $dados[0]['valor_servico'] : '' ?>" required>
+                                                <input type="text" class="form-control num dinheiro" name="valor" id="valor" value="<?= isset($dados) ? $dados[0]['valor_servico'] : '' ?>" required>
                                                 <label class="form-label">Valor</label>
                                             </div>
                                             <div class="help-info">Digite o valor do serviço</div>

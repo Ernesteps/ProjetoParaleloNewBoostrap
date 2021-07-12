@@ -84,7 +84,7 @@ if (isset($_GET['cod']) && is_numeric($_GET['cod'])) {
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="CPF" id="CPF" maxlength="11" onchange="ValidarCPFCadastroFuncionario(this.value, <?= isset($dados) ? $dados[0]['cpf_func'] : '' ?>)" value="<?= isset($dados) ? $dados[0]['cpf_func'] : '' ?>" required>
+                                        <input type="text" class="form-control num cpf" name="CPF" id="CPF" maxlength="11" onchange="ValidarCPFCadastroFuncionario(this.value, <?= isset($dados) ? $dados[0]['cpf_func'] : '' ?>)" value="<?= isset($dados) ? $dados[0]['cpf_func'] : '' ?>" required>
                                         <label class="form-label">CPF</label>
                                     </div>
                                     <div class="help-info">Digite somente os números do CPF</div>
@@ -101,7 +101,7 @@ if (isset($_GET['cod']) && is_numeric($_GET['cod'])) {
 
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="telefone" id="telefone" maxlength="13" value="<?= isset($dados) ? $dados[0]['tel_func'] : '' ?>" required>
+                                        <input type="text" class="form-control num cel" name="telefone" id="telefone" maxlength="13" value="<?= isset($dados) ? $dados[0]['tel_func'] : '' ?>" required>
                                         <label class="form-label">Telefone</label>
                                     </div>
                                     <div class="help-info">Digite o número do Telefone</div>

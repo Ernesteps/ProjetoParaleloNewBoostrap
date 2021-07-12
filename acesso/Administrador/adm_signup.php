@@ -68,7 +68,7 @@ if (isset($_POST['btn_gravar'])) {
                             <i class="material-icons">contacts</i>
                         </span>
                         <div class="form-line">
-                            <input class="form-control" name="CPF" id="CPF" placeholder="CPF" maxlength="11" value="<?php echo $cpf; ?>" required>
+                            <input class="form-control num cpf" name="CPF" id="CPF" placeholder="CPF" maxlength="11" value="<?php echo $cpf; ?>" required>
                         </div>
                     </div>
 
@@ -86,7 +86,7 @@ if (isset($_POST['btn_gravar'])) {
                             <i class="material-icons">call</i>
                         </span>
                         <div class="form-line">
-                            <input class="form-control" name="telefone" id="telefone" placeholder="Telefone" value="<?php echo $telefone; ?>" required>
+                            <input class="form-control num cel" name="telefone" id="telefone" placeholder="Telefone" value="<?php echo $telefone; ?>" required>
                         </div>
                     </div>
 

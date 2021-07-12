@@ -10,7 +10,8 @@ class UsuarioCTRL
         if ($vo->getNome() == '' || $vo->getCPF() == '' || $vo->getEmail() == '' || $vo->getTelefone() == '' || $vo->getEndereco() == '' || $vo->getSenha() == '') {
             return 0;
         }
-
+        $vo->setCPF(UtilCTRL::TirarCaracteresEspeciais($vo->getCPF()));
+        $vo->setTelefone(UtilCTRL::TirarCaracteresEspeciais($vo->getTelefone()));
         $vo->setSenha(UtilCTRL::RetornarCriptografado($vo->getSenha()));
 
         $dao = new UsuarioDAO();
@@ -29,7 +30,8 @@ class UsuarioCTRL
         if ($vo->getEmail() == '' || $vo->getTelefone() == '' || $vo->getEndereco() == '') {
             return 0;
         }
-
+        $vo->setCPF(UtilCTRL::TirarCaracteresEspeciais($vo->getCPF()));
+        $vo->setTelefone(UtilCTRL::TirarCaracteresEspeciais($vo->getTelefone()));
         $vo->setIdUser(UtilCTRL::CodigoUserLogado());
 
         $dao = new UsuarioDAO();
@@ -64,6 +66,7 @@ class UsuarioCTRL
 
     public function ValidarLoginCTRL($cpf, $senha)
     {
+        $cpf = UtilCTRL::TirarCaracteresEspeciais($cpf);
         $dao = new UsuarioDAO();
         $user = $dao->ValidarLoginDAO($cpf);
 

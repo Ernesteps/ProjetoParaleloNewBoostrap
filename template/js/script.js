@@ -118,42 +118,46 @@ function ValidarSenhaAtual(senha_atual_digitado) {
 
 function ValidarCPFCadastroCliente(cpf, cpfbuscado) {
 
-    if (cpfbuscado == null || cpf != cpfbuscado) {
-        if (cpf.trim() != '') {
+    var cpflimpo = cpf.replaceAll('.', '').replaceAll('-', '');
+
+    if (cpfbuscado == null || cpflimpo != cpfbuscado) {
+        if (cpflimpo.trim() != '') {
             $.post('Ajax/Verificar_Duplicidade_CPF_Cliente.php',
-                { cpf_cliente: cpf },
+                { cpf_cliente: cpflimpo },
                 function (retorno) {
                     if (retorno == 1) {
                         $("#CPF").val('');
-                        $("#val_cpf").html('O CPF: ' + cpf + ', que está tentando incluir ou alterar, já está cadastrado.');
+                        $("#val_cpf").html('O CPF: ' + cpflimpo + ', que está tentando incluir ou alterar, já está cadastrado.');
                         $("#val_cpf").show();
                     } else {
                         $("#val_cpf").hide();
                     }
                 });
         }
-    } else if (cpf == cpfbuscado) {
+    } else if (cpflimpo == cpfbuscado) {
         $("#val_cpf").hide();
     }
 }
 
 function ValidarCPFCadastroFuncionario(cpf, cpfbuscado) {
 
-    if (cpfbuscado == null || cpf != cpfbuscado) {
-        if (cpf.trim() != '') {
+    var cpflimpo = cpf.replaceAll('.', '').replaceAll('-', '');
+
+    if (cpfbuscado == null || cpflimpo != cpfbuscado) {
+        if (cpflimpo.trim() != '') {
             $.post('Ajax/Verificar_Duplicidade_CPF_Funcionario.php',
-                { cpf_funcionario: cpf },
+                { cpf_funcionario: cpflimpo },
                 function (retorno) {
                     if (retorno == 1) {
                         $("#CPF").val('');
-                        $("#val_cpf").html('O CPF: ' + cpf + ', que está tentando incluir ou alterar, já está cadastrado.');
+                        $("#val_cpf").html('O CPF: ' + cpflimpo + ', que está tentando incluir ou alterar, já está cadastrado.');
                         $("#val_cpf").show();
                     } else {
                         $("#val_cpf").hide();
                     }
                 });
         }
-    } else if (cpf == cpfbuscado) {
+    } else if (cpflimpo == cpfbuscado) {
         $("#val_cpf").hide();
     }
 }

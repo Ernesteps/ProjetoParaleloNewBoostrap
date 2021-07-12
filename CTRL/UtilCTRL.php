@@ -47,6 +47,14 @@ class UtilCTRL
         return password_hash($palavra, PASSWORD_DEFAULT);
     }
 
+    public static function TirarCaracteresEspeciais($str)
+    {
+        $especial = array('-', '_', '(', ')', '/', '*', ' ', '\\', '.', '!', ',', '#', '$');
+        $str_limpa = str_replace($especial, '', $str);
+
+        return $str_limpa;
+    }
+
     private static function SetarFusoHorario()
     {
         date_default_timezone_set('America/Sao_Paulo');

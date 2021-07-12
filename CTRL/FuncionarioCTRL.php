@@ -11,6 +11,8 @@ class FuncionarioCTRL
         if ($vo->getNome_func() == '' || $vo->getCPF_Func() == '' || $vo->getEmail_func() == '' || $vo->getTel_func() == '' || $vo->getEndereco_func() == '') {
             return 0;
         }
+        $vo->setCPF_func(UtilCTRL::TirarCaracteresEspeciais($vo->getCPF_Func()));
+        $vo->setTel_func(UtilCTRL::TirarCaracteresEspeciais($vo->getTel_func()));
         $vo->setID_user(UtilCTRL::CodigoUserLogado());
 
         $dao = new FuncionarioDAO();
@@ -22,6 +24,8 @@ class FuncionarioCTRL
         if ($vo->getNome_func() == '' || $vo->getCPF_Func() == '' || $vo->getEmail_func() == '' || $vo->getTel_func() == '' || $vo->getEndereco_func() == '') {
             return 0;
         }
+        $vo->setCPF_func(UtilCTRL::TirarCaracteresEspeciais($vo->getCPF_Func()));
+        $vo->setTel_func(UtilCTRL::TirarCaracteresEspeciais($vo->getTel_func()));
 
         $dao = new FuncionarioDAO();
         return $dao->AlterarFuncionarioDAO($vo, UtilCTRL::CodigoUserLogado());
@@ -47,6 +51,8 @@ class FuncionarioCTRL
 
     public function VerificarCPFCadastroFuncionarioCTRL($cpf)
     {
+        $cpf = UtilCTRL::TirarCaracteresEspeciais($cpf);
+
         $dao = new FuncionarioDAO();
         return $dao->VerificarCPFCadastroFuncionarioDAO($cpf);
     }

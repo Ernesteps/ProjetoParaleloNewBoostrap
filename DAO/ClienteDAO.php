@@ -75,15 +75,14 @@ class ClienteDAO extends Conexao
 
     public function DetalharCliente($idCliente)
     {
-        $comando_sql = 'select
-                            cli.id_cliente,
-                            cli.nome_cliente,
-                            cli.cpf_cliente,
-                            cli.email_cliente,
-                            cli.tel_cliente,
-                            cli.end_cliente
-                        from tb_cliente as cli
-                        where cli.id_cliente=?';
+        $comando_sql = 'select  cli.id_cliente,
+                                cli.nome_cliente,
+                                cli.cpf_cliente,
+                                cli.email_cliente,
+                                cli.tel_cliente,
+                                cli.end_cliente
+                            from tb_cliente as cli
+                            where cli.id_cliente=?';
         $this->sql = $this->conexao->prepare($comando_sql);
 
         $i = 1;
@@ -111,15 +110,14 @@ class ClienteDAO extends Conexao
 
     public function ConsultarClienteDAO()
     {
-        $comando_sql = 'select 
-                            id_cliente, 
-                            nome_cliente, 
-                            cpf_cliente, 
-                            email_cliente, 
-                            tel_cliente, 
-                            end_cliente 
-                        from tb_cliente 
-                        order by nome_cliente';
+        $comando_sql = 'select  id_cliente, 
+                                nome_cliente, 
+                                cpf_cliente, 
+                                email_cliente, 
+                                tel_cliente, 
+                                end_cliente 
+                            from tb_cliente 
+                            order by nome_cliente';
         $this->sql = $this->conexao->prepare($comando_sql);
         $this->sql->setFetchMode(PDO::FETCH_ASSOC);
         $this->sql->execute();

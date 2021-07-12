@@ -74,14 +74,13 @@ class OrdemServicoDAO extends Conexao
 
     public function DetalharOrdemServicoDAO($idOrdemServico)
     {
-        $comando_sql = 'select
-                            serv.id_ordem_servico,
-                            serv.desc_servico,
-                            serv.valor_servico,
-                            serv.id_func,
-                            serv.id_cliente
-                        from tb_ordem_servico as serv
-                        where serv.id_ordem_servico=?';
+        $comando_sql = 'select  serv.id_ordem_servico,
+                                serv.desc_servico,
+                                serv.valor_servico,
+                                serv.id_func,
+                                serv.id_cliente
+                            from tb_ordem_servico as serv
+                            where serv.id_ordem_servico=?';
         $this->sql = $this->conexao->prepare($comando_sql);
 
         $i = 1;
@@ -94,19 +93,18 @@ class OrdemServicoDAO extends Conexao
 
     public function PesquisarOrdemServicoAndamentoDAO()
     {
-        $comando_sql = 'select
-                            serv.id_ordem_servico,
-                            serv.data_servico,
-                            serv.desc_servico,
-                            serv.valor_servico,
-                            cli.nome_cliente,
-                            func.nome_func
-                        from tb_ordem_servico as serv
-                        inner join tb_cliente as cli
-                            on serv.id_cliente = cli.id_cliente
-                        inner join tb_funcionario as func
-                            on serv.id_func = func.id_func
-                        where data_remover is null';
+        $comando_sql = 'select  serv.id_ordem_servico,
+                                date_format(serv.data_servico, "%d/%m/%Y") as data_servico,
+                                serv.desc_servico,
+                                serv.valor_servico,
+                                cli.nome_cliente,
+                                func.nome_func
+                            from tb_ordem_servico as serv
+                            inner join tb_cliente as cli
+                                on serv.id_cliente = cli.id_cliente
+                            inner join tb_funcionario as func
+                                on serv.id_func = func.id_func
+                            where data_remover is null';
         $this->sql = $this->conexao->prepare($comando_sql);
         $this->sql->setFetchMode(PDO::FETCH_ASSOC);
         $this->sql->execute();
@@ -116,20 +114,19 @@ class OrdemServicoDAO extends Conexao
 
     public function PesquisarOrdemServicoEncerradoDAO()
     {
-        $comando_sql = 'select
-                            serv.id_ordem_servico,
-                            serv.data_servico,
-                            serv.desc_servico,
-                            serv.valor_servico,
-                            serv.data_remover,
-                            cli.nome_cliente,
-                            func.nome_func
-                        from tb_ordem_servico as serv
-                        inner join tb_cliente as cli
-                            on serv.id_cliente = cli.id_cliente
-                        inner join tb_funcionario as func
-                            on serv.id_func = func.id_func
-                        where data_remover is not null';
+        $comando_sql = 'select  serv.id_ordem_servico,
+                                date_format(serv.data_servico, "%d/%m/%Y") as data_servico,
+                                serv.desc_servico,
+                                serv.valor_servico,
+                                date_format(serv.data_remover, "%d/%m/%Y") as data_remover,
+                                cli.nome_cliente,
+                                func.nome_func
+                            from tb_ordem_servico as serv
+                            inner join tb_cliente as cli
+                                on serv.id_cliente = cli.id_cliente
+                            inner join tb_funcionario as func
+                                on serv.id_func = func.id_func
+                            where data_remover is not null';
         $this->sql = $this->conexao->prepare($comando_sql);
         $this->sql->setFetchMode(PDO::FETCH_ASSOC);
         $this->sql->execute();

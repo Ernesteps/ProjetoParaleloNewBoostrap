@@ -58,6 +58,8 @@
     <script src="../../template/js/pages/examples/sign-up.js"></script>
     <script src="../../template/js/pages/ui/modals.js"></script>
     <script src="../../template/js/script.js"></script>
+    <script src="../../template/js/jquery.mask.min.js"></script>
+    <script src="../../template/js/mask.js"></script>
 
     <!-- Demo Js -->
     <script src="../../template/js/demo.js"></script>
